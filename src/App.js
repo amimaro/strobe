@@ -12,9 +12,10 @@ class App extends Component {
       displayMenu: false
     }
 
-    this.mouseMoved = this.mouseMoved.bind(this);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
-  mouseMoved() {
+  handleMouseMove() {
     if (this.state.displayMenu === false)
       this.setState({displayMenu: true});
     clearTimeout(this.timer);
@@ -22,8 +23,23 @@ class App extends Component {
       this.setState({displayMenu: false});
     }, 1000)
   }
+  handleKeyPress = (event) => {
+    switch (event.keyCode) {
+      case 32:
+        console.log('space');        
+        break;
+      default:
+        break;
+    }
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress, false);
+  }
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress, false);
+  }
   render() {
-    return (<div className="App" onMouseMove={this.mouseMoved}>
+    return (<div className="App" onMouseMove={this.handleMouseMove}>
       <Menu display={this.state.displayMenu}/>
       <Canvas/>
     </div>);
