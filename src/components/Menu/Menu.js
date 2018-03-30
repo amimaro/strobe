@@ -15,7 +15,7 @@ class Menu extends Component {
     }));
   }
   render() {
-    return (<div className="Menu">
+    return (<div className="Menu" style={{display: this.props.display ? 'block' : 'none'}}>
       <button className="btn default" onClick={this.toggleInit}>{
           this.state.isToggleOn
             ? 'TurnOff'
