@@ -8,29 +8,8 @@ import Menu from './components/Menu/Menu';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      displayMenu: false
-    }
 
-    this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
-  handleMouseMove() {
-    if (this.state.displayMenu === false)
-      this.setState({displayMenu: true});
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-      this.setState({displayMenu: false});
-    }, 1000)
-  }
-  handleKeyPress = (event) => {
-    switch (event.keyCode) {
-      case 32:
-        console.log('space');        
-        break;
-      default:
-        break;
-    }
   }
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyPress, false);
@@ -38,9 +17,18 @@ class App extends Component {
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyPress, false);
   }
+  handleKeyPress = (event) => {
+    switch (event.keyCode) {
+      case 32:
+        console.log('space');
+        break;
+      default:
+        break;
+    }
+  }
   render() {
-    return (<div className="App" onMouseMove={this.handleMouseMove}>
-      <Menu display={this.state.displayMenu}/>
+    return (<div className="App">
+      <Menu/>
       <Canvas/>
     </div>);
   }
