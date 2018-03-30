@@ -30,12 +30,38 @@ class Menu extends Component {
     }));
   }
   render() {
-    return (<div className="Menu" style={{visibility: this.state.displayMenu ? '' : 'hidden'}}>
-      <button className="btn default" onClick={this.toggleInit}>{
-          this.state.isToggleOn
-            ? 'TurnOff'
-            : 'TurnOn'
-        }</button>
+    return (<div className="Menu" style={{
+        visibility: this.state.displayMenu
+          ? ''
+          : 'hidden'
+      }}>
+      <div className="MenuHeader">
+        <center>
+          <h1>Menu</h1>
+        </center>
+      </div>
+      <div className="MenuContent">
+        <button className="btn default" onClick={this.toggleInit}>{
+            this.state.isToggleOn
+              ? 'TurnOff'
+              : 'TurnOn'
+          }</button>
+      </div>
+      <hr/>
+      <div className="MenuFooter">
+        <center>
+          <p>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <b>strobe</b>
+            </a>. The source code is licensed under&nbsp;
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+          </p>
+          <p>
+            &lt;/&gt; with ♥ by&nbsp;
+            <a href="https://github.com/amimaro" target="_blank" rel="noopener noreferrer">amimaro</a>
+          </p>
+        </center>
+      </div>
     </div>);
   }
 }
