@@ -8,6 +8,9 @@ import Menu from './components/Menu/Menu';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      params: null
+    }
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.getParams = this.getParams.bind(this);
@@ -28,12 +31,14 @@ class App extends Component {
     }
   }
   getParams(params) {
+    console.log('app received params:')
     console.log(params);
+    this.setState({params: params});
   }
   render() {
     return (<div className="App">
       <Menu setup={this.getParams}/>
-      <Canvas/>
+      <Canvas params={this.state.params}/>
     </div>);
   }
 }
