@@ -6,14 +6,10 @@
   background-color: rgb(0, 0, 0, 0.5);
 }
 
-.MenuHeader, .MenuContent, .MenuFooter {
+.MenuHeader, .MenuContent {
   color: white;
   padding-left: 10%;
   padding-right: 10%;
-}
-
-.MenuFooter a {
-  color: white;
 }
 
 .btn {

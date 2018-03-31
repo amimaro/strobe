@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Menu.css';
 
+import MenuFooter from './MenuFooter/MenuFooter';
 import ColorPicker from '../ColorPicker/ColorPicker';
 
 class Menu extends Component {
@@ -11,9 +12,9 @@ class Menu extends Component {
       isToggleOn: false,
       speed: 1,
       blink: 1,
-      control: 1
+      control: 1,
+      color: '#ffffff'
     };
-    this.toggleInit = this.toggleInit.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.selectColor = this.selectColor.bind(this);
   }
@@ -23,6 +24,10 @@ class Menu extends Component {
   componentDidMount() {
     document.addEventListener("mousemove", this.handleMouseMove);
   }
+  selectColor(color) {
+    console.log('Color: ' + color);
+    this.setState({colo: color});
+  }
   handleMouseMove() {
     if (this.state.displayMenu === false)
       this.setState({displayMenu: true});
@@ -30,14 +35,6 @@ class Menu extends Component {
     this.timer = setTimeout(() => {
       this.setState({displayMenu: false});
     }, 1000)
-  }
-  toggleInit() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
-  }
-  selectColor(color) {
-    console.log(color)
   }
   render() {
     return (<div className="Menu" style={{
@@ -93,23 +90,7 @@ class Menu extends Component {
         </div>
 
       </div>
-      <div className="MenuFooter">
-        <hr/>
-        <center>
-          <p>
-            <a href="" target="_blank" rel="noopener noreferrer">
-              <b>strobe</b>
-            </a>. The source code is licensed under&nbsp;
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
-          </p>
-          <p>
-            &lt;/&gt; with
-            <span className="is-red">♥</span>
-            by&nbsp;
-            <a href="https://github.com/amimaro" target="_blank" rel="noopener noreferrer">amimaro</a>
-          </p>
-        </center>
-      </div>
+      <MenuFooter />
     </div>);
   }
 }
