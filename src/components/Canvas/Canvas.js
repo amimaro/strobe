@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Canvas.css';
 
 class Canvas extends Component {
@@ -16,7 +16,9 @@ class Canvas extends Component {
     this.stop = this.stop.bind(this);
   }
   setParams(params) {
-    this.setState({params: params}, this.setupParams)
+    this.setState({
+      params: params
+    }, this.setupParams)
   }
   setupParams() {
     console.log(this.state.params);
@@ -31,7 +33,7 @@ class Canvas extends Component {
     }
   }
   stop() {
-    console.log('canvas stop');4
+    console.log('canvas stop');
     clearInterval(this.loop);
   }
   play() {
@@ -39,13 +41,12 @@ class Canvas extends Component {
     clearInterval(this.loop);
     this.loop = setInterval(() => {
       console.log('tick');
-    }, 1000)
+    }, 1000);
   }
   render() {
-    return (
-      <div className="Canvas" style={{backgroundColor: this.state.params.color}}>
-      </div>
-    );
+    return (<div className="Canvas" style={{
+        backgroundColor: this.state.params.color
+      }}></div>);
   }
 }
 

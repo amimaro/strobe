@@ -9,23 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.setParams = this.setParams.bind(this);
-  }
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyPress, false);
-  }
-  componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyPress, false);
-  }
-  handleKeyPress = (event) => {
-    switch (event.keyCode) {
-      case 32:
-        console.log('space');
-        break;
-      default:
-        break;
-    }
   }
   setParams(params) {
     console.log('app setParams')
