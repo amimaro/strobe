@@ -14,7 +14,7 @@ class Menu extends Component {
       speed: 1,
       blink: 1,
       control: 2,
-      color: '#ffffff'
+      colors: []
     };
 
     this.setup = this.setup.bind(this);
@@ -36,15 +36,30 @@ class Menu extends Component {
     }, 1000);
   }
   setup() {
-    if(this.props.hasOwnProperty('setup')){
-      let command = 'menu ' + (this.state.control === 1 ? 'play' : 'stop');
+    if (this.props.hasOwnProperty('setup')) {
+      let command = 'menu ' + (
+        this.state.control === 1
+        ? 'play'
+        : 'stop');
       console.log(command);
       this.props.setup(this.state);
     }
   }
-  selectColor(color) {
-    console.log('color: ' + color);
-    this.setState({color: color});
+  selectColor(selectedColor) {
+    console.log(selectedColor)
+    let colors = this.state.colors;
+    let found = colors.find(function(color) {
+      return color.id === selectedColor.id;
+    });
+    if (!found)
+      colors.push(selectedColor);
+    else
+      colors = colors.map((color) => {
+        if (color.id === selectedColor.id)
+          return selectedColor;
+        return color;
+      });
+    this.setState({colors: colors});
   }
   render() {
     return (<div className="Menu" style={{
@@ -96,7 +111,8 @@ class Menu extends Component {
         <h3>Color</h3>
         <div>
           <div id="custom-color">
-            <ColorPicker selectColor={this.selectColor}/>
+            <label htmlFor="color-picker">Custom Color:&nbsp;</label>
+            <ColorPicker id="1" selectColor={this.selectColor} color="#ffffff"/>
           </div>
           <div id="random-color"></div>
         </div>

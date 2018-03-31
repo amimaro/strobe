@@ -5,9 +5,12 @@ class ColorPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: '#ffffff'
+      color: this.props.color
+        ? this.props.color
+        : '#ffffff'
     }
 
+    this.props.selectColor({id: this.props.id, value: this.props.color});
     this.handleOnChange = this.handleOnChange.bind(this);
   }
   handleOnChange(event) {
@@ -19,15 +22,13 @@ class ColorPicker extends Component {
         color: color
       }, () => {
         if (this.props.hasOwnProperty('selectColor')) {
-          this.props.selectColor(color);
+          this.props.selectColor({id: this.props.id, value: color});
         }
       });
     }, 500);
   }
   render() {
     return (<div>
-      <label htmlFor="color-picker">Custom color:&nbsp;
-      </label>
       <input id="color-picker" type="color" onChange={this.handleOnChange} value={this.state.color}/>
     </div>);
   }
