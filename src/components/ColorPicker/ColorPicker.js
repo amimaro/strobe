@@ -26,7 +26,7 @@ class ColorPicker extends Component {
   }
   render() {
     return (<div>
-      <label htmlFor="color-picker">Custom color:
+      <label htmlFor="color-picker">Custom color:&nbsp;
       </label>
       <input id="color-picker" type="color" onChange={this.handleOnChange} value={this.state.color}/>
     </div>);
