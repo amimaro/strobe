@@ -14,7 +14,7 @@ class MenuFooter extends Component {
         </p>
         <p>
           &lt;/&gt; with
-          <span className="is-red">♥</span>
+          <span className="is-red">&nbsp;♥&nbsp;</span>
           by&nbsp;
           <a href="https://github.com/amimaro" target="_blank" rel="noopener noreferrer">amimaro</a>
         </p>
