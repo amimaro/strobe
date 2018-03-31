@@ -10,7 +10,8 @@ class Menu extends Component {
       displayMenu: false,
       isToggleOn: false,
       speed: 1,
-      blink: 1
+      blink: 1,
+      control: 1
     };
     this.toggleInit = this.toggleInit.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -50,11 +51,14 @@ class Menu extends Component {
         </center>
       </div>
       <div className="MenuContent">
-        <button className="btn default" onClick={this.toggleInit}>{
-            this.state.isToggleOn
-              ? 'TurnOff'
-              : 'TurnOn'
-          }</button>
+        <button className={"btn default " + (
+            this.state.control === 1
+            ? 'selected'
+            : '')} onClick={() => this.setState({control: 1})}><i class="fas fa-play">&nbsp;</i>Play</button>
+        <button className={"btn default " + (
+            this.state.control === 2
+            ? 'selected'
+            : '')} onClick={() => this.setState({control: 2})}><i class="fas fa-stop">&nbsp;</i>Stop</button>
 
         <h3>Blinking Style</h3>
         <button className={"btn default " + (
