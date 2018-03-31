@@ -7,7 +7,7 @@ class ColorPicker extends Component {
     this.state = {
       color: '#ffffff'
     }
-    
+
     this.handleOnChange = this.handleOnChange.bind(this);
   }
   handleOnChange(event) {
@@ -15,8 +15,14 @@ class ColorPicker extends Component {
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       console.log(color)
-      this.setState({color: color});
-    }, 100)
+      this.setState({
+        color: color
+      }, () => {
+        if (this.props.hasOwnProperty('selectColor')) {
+          this.props.selectColor(color);
+        }
+      });
+    }, 500);
   }
   render() {
     return (<div>
