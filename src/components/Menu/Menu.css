@@ -40,3 +40,7 @@
   color: black;
   background: #e7e7e7;
 }
+
+button::-moz-focus-inner {
+  border: 0;
+}
