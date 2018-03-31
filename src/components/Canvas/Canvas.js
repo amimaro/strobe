@@ -5,9 +5,8 @@ class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      params: {
-        color: '#cccccc'
-      }
+      params: null,
+      color: '#cccccc'
     }
 
     this.setParams = this.setParams.bind(this);
@@ -41,19 +40,15 @@ class Canvas extends Component {
     console.log('canvas play');
     clearInterval(this.loop);
     this.loop = setInterval(() => {
-      console.log('tick');
+      console.log('tick')
     }, 1000);
   }
   setColor(color) {
-    let params = this.state.params;
-    params.color = color;
-    this.setState({
-      params: params
-    }, () => console.log('update color: ' + color))
+    this.setState({color: color});
   }
   render() {
-    return (<div className="Canvas" style={{
-        backgroundColor: this.state.params.color
+    return (<div className="Canvas" id="canvas" style={{
+        backgroundColor: this.state.color
       }}></div>);
   }
 }
