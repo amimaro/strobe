@@ -29,7 +29,7 @@ class ColorPicker extends Component {
   }
   render() {
     return (<div>
-      <input id="color-picker" type="color" onChange={this.handleOnChange} value={this.state.color}/>
+      <input className="color-picker" type="color" onChange={this.handleOnChange} value={this.state.color}/>
     </div>);
   }
 }
