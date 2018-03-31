@@ -8,8 +8,9 @@ class Menu extends Component {
     super(props);
     this.state = {
       displayMenu: false,
+      isToggleOn: false,
       speed: 1,
-      isToggleOn: false
+      blink: 1
     };
     this.toggleInit = this.toggleInit.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -54,6 +55,12 @@ class Menu extends Component {
               ? 'TurnOff'
               : 'TurnOn'
           }</button>
+
+        <h3>Blinking Style</h3>
+        <button className={"btn default " + (
+            this.state.blink === 1
+            ? 'selected'
+            : '')} onClick={() => this.setState({blink: 1})}>Blink On/Off</button>
 
         <h3>Speed</h3>
         <button className={"btn default " + (
