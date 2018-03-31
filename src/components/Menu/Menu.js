@@ -37,7 +37,7 @@ class Menu extends Component {
   }
   setup() {
     if(this.props.hasOwnProperty('setup')){
-      let command = 'menu ' + this.state.control === 1 ? 'play' : 'stop';
+      let command = 'menu ' + (this.state.control === 1 ? 'play' : 'stop');
       console.log(command);
       this.props.setup(this.state);
     }
