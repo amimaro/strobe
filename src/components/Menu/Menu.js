@@ -46,7 +46,7 @@ class Menu extends Component {
     }
   }
   selectColor(selectedColor) {
-    console.log(selectedColor)
+    console.log(`colorpicker id: ${selectedColor.id}, value: ${selectedColor.value}`)
     let colors = this.state.colors;
     let found = colors.find(function(color) {
       return color.id === selectedColor.id;
