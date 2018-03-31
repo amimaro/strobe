@@ -13,11 +13,13 @@ class Menu extends Component {
       isToggleOn: false,
       speed: 1,
       blink: 1,
-      control: 1,
+      control: 2,
       color: '#ffffff'
     };
+
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.selectColor = this.selectColor.bind(this);
+    this.play = this.play.bind(this);
   }
   componentWillUnmount() {
     document.removeEventListener("mousemove", this.handleMouseMove);
@@ -25,17 +27,24 @@ class Menu extends Component {
   componentDidMount() {
     document.addEventListener("mousemove", this.handleMouseMove);
   }
-  selectColor(color) {
-    console.log('Color: ' + color);
-    this.setState({colo: color});
-  }
   handleMouseMove() {
     if (this.state.displayMenu === false)
       this.setState({displayMenu: true});
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       this.setState({displayMenu: false});
-    }, 1000)
+    }, 1000);
+  }
+  play() {
+    console.log('started');
+    clearInterval(this.loop);
+    this.loop = setInterval(() => {
+      console.log('ok')
+    }, 1000);
+  }
+  selectColor(color) {
+    console.log('color: ' + color);
+    this.setState({colo: color});
   }
   render() {
     return (<div className="Menu" style={{
@@ -48,11 +57,11 @@ class Menu extends Component {
         <button className={"btn default " + (
             this.state.control === 1
             ? 'selected'
-            : '')} onClick={() => this.setState({control: 1})}><i class="fas fa-play">&nbsp;</i>Play</button>
+            : '')} onClick={() => this.setState({control: 1}, this.play)}><i className="fas fa-play">&nbsp;</i>Play</button>
         <button className={"btn default " + (
             this.state.control === 2
             ? 'selected'
-            : '')} onClick={() => this.setState({control: 2})}><i class="fas fa-stop">&nbsp;</i>Stop</button>
+            : '')} onClick={() => this.setState({control: 2})}><i className="fas fa-stop">&nbsp;</i>Stop</button>
 
         <h3>Blinking Style</h3>
         <button className={"btn default " + (
