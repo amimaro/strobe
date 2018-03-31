@@ -13,7 +13,8 @@ class App extends Component {
     }
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.getParams = this.getParams.bind(this);
+    this.setParams = this.setParams.bind(this);
+    
   }
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyPress, false);
@@ -30,14 +31,14 @@ class App extends Component {
         break;
     }
   }
-  getParams(params) {
-    console.log('app received params:')
+  setParams(params) {
+    console.log('app params:')
     console.log(params);
     this.setState({params: params});
   }
   render() {
     return (<div className="App">
-      <Menu setup={this.getParams}/>
+      <Menu setup={this.setParams}/>
       <Canvas params={this.state.params}/>
     </div>);
   }
