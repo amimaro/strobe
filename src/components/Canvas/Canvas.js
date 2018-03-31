@@ -14,6 +14,7 @@ class Canvas extends Component {
     this.setupParams = this.setupParams.bind(this);
     this.play = this.play.bind(this);
     this.stop = this.stop.bind(this);
+    this.setColor = this.setColor.bind(this);
   }
   setParams(params) {
     this.setState({
@@ -42,6 +43,13 @@ class Canvas extends Component {
     this.loop = setInterval(() => {
       console.log('tick');
     }, 1000);
+  }
+  setColor(color) {
+    let params = this.state.params;
+    params.color = color;
+    this.setState({
+      params: params
+    }, () => console.log('update color: ' + color))
   }
   render() {
     return (<div className="Canvas" style={{
