@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
 import './Menu.css';
 
+import ColorPicker from '../ColorPicker/ColorPicker';
+
 class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayMenu: false
+      displayMenu: false,
+      speed: 1,
+      isToggleOn: false
     };
     this.toggleInit = this.toggleInit.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.selectColor = this.selectColor.bind(this);
   }
   componentWillUnmount() {
     document.removeEventListener("mousemove", this.handleMouseMove);
@@ -29,6 +34,9 @@ class Menu extends Component {
       isToggleOn: !prevState.isToggleOn
     }));
   }
+  selectColor(color) {
+    console.log(color)
+  }
   render() {
     return (<div className="Menu" style={{
         visibility: this.state.displayMenu
@@ -46,9 +54,36 @@ class Menu extends Component {
               ? 'TurnOff'
               : 'TurnOn'
           }</button>
+
+        <h3>Speed</h3>
+        <button className={"btn default " + (
+            this.state.speed === 1
+            ? 'selected'
+            : '')} onClick={() => this.setState({speed: 1})}>x1</button>
+        <button className={"btn default " + (
+            this.state.speed === 2
+            ? 'selected'
+            : '')} onClick={() => this.setState({speed: 2})}>x2</button>
+        <button className={"btn default " + (
+            this.state.speed === 3
+            ? 'selected'
+            : '')} onClick={() => this.setState({speed: 3})}>x3</button>
+        <button className={"btn default " + (
+            this.state.speed === 4
+            ? 'selected'
+            : '')} onClick={() => this.setState({speed: 4})}>x4</button>
+
+        <h3>Color</h3>
+        <div>
+          <div id="custom-color">
+            <ColorPicker selectColor={this.selectColor}/>
+          </div>
+          <div id="random-color"></div>
+        </div>
+
       </div>
-      <hr/>
       <div className="MenuFooter">
+        <hr/>
         <center>
           <p>
             <a href="" target="_blank" rel="noopener noreferrer">
@@ -57,7 +92,9 @@ class Menu extends Component {
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
           </p>
           <p>
-            &lt;/&gt; with ♥ by&nbsp;
+            &lt;/&gt; with
+            <span className="is-red">♥</span>
+            by&nbsp;
             <a href="https://github.com/amimaro" target="_blank" rel="noopener noreferrer">amimaro</a>
           </p>
         </center>
