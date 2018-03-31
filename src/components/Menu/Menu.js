@@ -17,9 +17,10 @@ class Menu extends Component {
       color: '#ffffff'
     };
 
+    this.play = this.play.bind(this);
+    this.stop = this.stop.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.selectColor = this.selectColor.bind(this);
-    this.play = this.play.bind(this);
   }
   componentWillUnmount() {
     document.removeEventListener("mousemove", this.handleMouseMove);
@@ -42,6 +43,10 @@ class Menu extends Component {
       console.log('ok')
     }, 1000);
   }
+  stop() {
+    console.log('stopped');
+    clearInterval(this.loop);
+  }
   selectColor(color) {
     console.log('color: ' + color);
     this.setState({colo: color});
@@ -61,7 +66,7 @@ class Menu extends Component {
         <button className={"btn default " + (
             this.state.control === 2
             ? 'selected'
-            : '')} onClick={() => this.setState({control: 2})}><i className="fas fa-stop">&nbsp;</i>Stop</button>
+            : '')} onClick={() => this.setState({control: 2}, this.stop)}><i className="fas fa-stop">&nbsp;</i>Stop</button>
 
         <h3>Blinking Style</h3>
         <button className={"btn default " + (
