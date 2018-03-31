@@ -4,12 +4,18 @@ import './Canvas.css';
 class Canvas extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      color: 'asd'
+    }
+
+    this.setParams = this.setParams.bind(this);
   }
   componentDidMount() {
-    console.log(this.props.params);
+  }
+  setParams(params) {
+    console.log(params);
   }
   render() {
-    console.log(this.props.params)
     return (
       <div className="Canvas" id="canvas">
       </div>

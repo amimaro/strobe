@@ -8,13 +8,9 @@ import Menu from './components/Menu/Menu';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      params: null
-    }
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.setParams = this.setParams.bind(this);
-    
   }
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyPress, false);
@@ -32,14 +28,13 @@ class App extends Component {
     }
   }
   setParams(params) {
-    console.log('app params:')
-    console.log(params);
-    this.setState({params: params});
+    console.log('app setParams')
+    this.refs.canvas.setParams(params);
   }
   render() {
     return (<div className="App">
       <Menu setup={this.setParams}/>
-      <Canvas params={this.state.params}/>
+      <Canvas ref="canvas"/>
     </div>);
   }
 }
