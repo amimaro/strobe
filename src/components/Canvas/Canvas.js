@@ -16,6 +16,7 @@ class Canvas extends Component {
     this.stop = this.stop.bind(this);
     this.setColor = this.setColor.bind(this);
     this.blink = this.blink.bind(this);
+    this.getSpeed = this.getSpeed.bind(this);
   }
   setParams(params) {
     this.setState({
@@ -39,17 +40,19 @@ class Canvas extends Component {
     clearInterval(this.loop);
   }
   play() {
-    this.tick = 0;
     console.log('canvas play');
+    this.tick = 0;
+    let params = this.state.params;
+
     clearInterval(this.loop);
     this.loop = setInterval(() => {
-      switch (this.state.params.blink) {
+      switch (params.blink) {
         case 1:
           this.blink();
           break;
         default:
       }
-    }, 500);
+    }, this.getSpeed(params.speed));
   }
   blink() {
     let params = this.state.params;
@@ -61,6 +64,11 @@ class Canvas extends Component {
       this.setColor('black');
     }
   }
+  getSpeed(speed) {
+    speed = Math.floor(1000/speed);
+    console.log(`speed ${speed}ms`);
+    return speed;
+  }
   setColor(color) {
     this.setState({color: color});
   }
@@ -69,7 +77,7 @@ class Canvas extends Component {
         backgroundColor: this.state.color,
         WebkitTransition: `background-color ${this.state.transitionPeriod}s ease-out`,
         MozTransition: `background-color ${this.state.transitionPeriod}s ease-out`,
-        oTransition: `background-color ${this.state.transitionPeriod}s ease-out`,
+        OTransition: `background-color ${this.state.transitionPeriod}s ease-out`,
         transition: `background-color ${this.state.transitionPeriod}s ease-out`
       }}></div>);
   }
