@@ -1,9 +1,3 @@
-.MenuHeader, .MenuContent, .MenuFooter {
-  color: white;
-  padding-left: 10%;
-  padding-right: 10%;
-}
-
 .MenuFooter a {
   color: white;
 }
