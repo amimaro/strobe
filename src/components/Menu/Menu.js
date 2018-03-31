@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Menu.css';
 
+import MenuHeader from './MenuHeader/MenuHeader';
 import MenuFooter from './MenuFooter/MenuFooter';
 import ColorPicker from '../ColorPicker/ColorPicker';
 
@@ -42,11 +43,7 @@ class Menu extends Component {
           ? ''
           : 'hidden'
       }}>
-      <div className="MenuHeader">
-        <center>
-          <h1>Menu</h1>
-        </center>
-      </div>
+      <MenuHeader />
       <div className="MenuContent">
         <button className={"btn default " + (
             this.state.control === 1
