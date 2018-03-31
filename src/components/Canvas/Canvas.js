@@ -7,7 +7,7 @@ class Canvas extends Component {
     this.state = {
       params: null,
       color: '#cccccc',
-      transitionPeriod: '1.0'
+      transitionPeriod: '0'
     }
 
     this.setParams = this.setParams.bind(this);
@@ -65,10 +65,17 @@ class Canvas extends Component {
     }
   }
   setupSpeed(speed) {
-    let SPEED_MS = Math.floor(1000/speed);
-    let SPEED_S = (1000/speed/1000).toFixed(2);
-    console.log(`speed ${SPEED_MS}ms ${SPEED_S}s`);
-    this.setState({transitionPeriod: SPEED_S})
+    let SPEED_MS = Math.floor(1000 / speed);
+    let SPEED_S = (1000 / speed / 1000).toFixed(2);
+    console.log(
+      `speed ${SPEED_MS}ms ${SPEED_S}s ${this.state.params.transition
+      ? 'with'
+      : 'without'} transition`);
+    this.setState({
+      transitionPeriod: this.state.params.transition
+        ? SPEED_S
+        : 0
+    })
     return SPEED_MS;
   }
   setColor(color) {

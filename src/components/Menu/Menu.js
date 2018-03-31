@@ -10,8 +10,8 @@ class Menu extends Component {
     super(props);
     this.state = {
       displayMenu: false,
-      isToggleOn: false,
       speed: 1,
+      transition: false,
       blink: 1,
       control: 2,
       colors: []
@@ -107,6 +107,10 @@ class Menu extends Component {
             this.state.speed === 4
             ? 'selected'
             : '')} onClick={() => this.setState({speed: 4})}>x4</button>
+        <button className={"btn default " + (
+            this.state.transition === true
+            ? 'selected'
+            : '')} onClick={() => this.setState({transition: !this.state.transition})}>Transition</button>
 
         <h3>Color</h3>
         <div>
