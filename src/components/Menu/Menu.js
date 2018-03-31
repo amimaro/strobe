@@ -17,8 +17,7 @@ class Menu extends Component {
       color: '#ffffff'
     };
 
-    this.play = this.play.bind(this);
-    this.stop = this.stop.bind(this);
+    this.setup = this.setup.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.selectColor = this.selectColor.bind(this);
   }
@@ -36,20 +35,16 @@ class Menu extends Component {
       this.setState({displayMenu: false});
     }, 1000);
   }
-  play() {
-    console.log('started');
-    clearInterval(this.loop);
-    this.loop = setInterval(() => {
-      console.log('ok')
-    }, 1000);
-  }
-  stop() {
-    console.log('stopped');
-    clearInterval(this.loop);
+  setup() {
+    if(this.props.hasOwnProperty('setup')){
+      let command = this.state.control === 1 ? 'play' : 'stop';
+      console.log(command);
+      this.props.setup(this.state);
+    }
   }
   selectColor(color) {
     console.log('color: ' + color);
-    this.setState({colo: color});
+    this.setState({color: color});
   }
   render() {
     return (<div className="Menu" style={{
@@ -57,16 +52,22 @@ class Menu extends Component {
           ? ''
           : 'hidden'
       }}>
-      <MenuHeader />
+      <MenuHeader/>
       <div className="MenuContent">
         <button className={"btn default " + (
             this.state.control === 1
             ? 'selected'
-            : '')} onClick={() => this.setState({control: 1}, this.play)}><i className="fas fa-play">&nbsp;</i>Play</button>
+            : '')} onClick={() => this.setState({
+            control: 1
+          }, this.setup)}>
+          <i className="fas fa-play">&nbsp;</i>Play</button>
         <button className={"btn default " + (
             this.state.control === 2
             ? 'selected'
-            : '')} onClick={() => this.setState({control: 2}, this.stop)}><i className="fas fa-stop">&nbsp;</i>Stop</button>
+            : '')} onClick={() => this.setState({
+            control: 2
+          }, this.setup)}>
+          <i className="fas fa-stop">&nbsp;</i>Stop</button>
 
         <h3>Blinking Style</h3>
         <button className={"btn default " + (
@@ -101,7 +102,7 @@ class Menu extends Component {
         </div>
 
       </div>
-      <MenuFooter />
+      <MenuFooter/>
     </div>);
   }
 }
