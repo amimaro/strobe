@@ -16,7 +16,7 @@ class Canvas extends Component {
     this.stop = this.stop.bind(this);
     this.setColor = this.setColor.bind(this);
     this.blink = this.blink.bind(this);
-    this.getSpeed = this.getSpeed.bind(this);
+    this.setupSpeed = this.setupSpeed.bind(this);
   }
   setParams(params) {
     this.setState({
@@ -52,7 +52,7 @@ class Canvas extends Component {
           break;
         default:
       }
-    }, this.getSpeed(params.speed));
+    }, this.setupSpeed(params.speed));
   }
   blink() {
     let params = this.state.params;
@@ -64,10 +64,12 @@ class Canvas extends Component {
       this.setColor('black');
     }
   }
-  getSpeed(speed) {
-    speed = Math.floor(1000/speed);
-    console.log(`speed ${speed}ms`);
-    return speed;
+  setupSpeed(speed) {
+    let SPEED_MS = Math.floor(1000/speed);
+    let SPEED_S = (1000/speed/1000).toFixed(2);
+    console.log(`speed ${SPEED_MS}ms ${SPEED_S}s`);
+    this.setState({transitionPeriod: SPEED_S})
+    return SPEED_MS;
   }
   setColor(color) {
     this.setState({color: color});
