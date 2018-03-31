@@ -6,7 +6,8 @@ class Canvas extends Component {
     super(props);
     this.state = {
       params: null,
-      color: '#cccccc'
+      color: '#cccccc',
+      transitionPeriod: '1.0'
     }
 
     this.setParams = this.setParams.bind(this);
@@ -48,7 +49,7 @@ class Canvas extends Component {
           break;
         default:
       }
-    }, 1000);
+    }, 500);
   }
   blink() {
     let params = this.state.params;
@@ -65,7 +66,11 @@ class Canvas extends Component {
   }
   render() {
     return (<div className="Canvas" id="canvas" style={{
-        backgroundColor: this.state.color
+        backgroundColor: this.state.color,
+        WebkitTransition: `background-color ${this.state.transitionPeriod}s ease-out`,
+        MozTransition: `background-color ${this.state.transitionPeriod}s ease-out`,
+        oTransition: `background-color ${this.state.transitionPeriod}s ease-out`,
+        transition: `background-color ${this.state.transitionPeriod}s ease-out`
       }}></div>);
   }
 }
