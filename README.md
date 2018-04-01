@@ -13,6 +13,14 @@ Check it out >> https://amimaro.github.io/strobe/
 
 Run `npm start` then open http://localhost:3000/.
 
+## TODO
+
+- [X] Blink
+- [ ] Random Blink
+- [ ] Color Palette
+- [ ] Random Color
+- [ ] Sound Sensor
+
 ## Contributing
 
 Pull Requests are welcome.
