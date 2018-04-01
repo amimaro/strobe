@@ -3,6 +3,7 @@ import './Menu.css';
 
 import MenuHeader from './MenuHeader/MenuHeader';
 import MenuFooter from './MenuFooter/MenuFooter';
+import MenuSpeed from './MenuSpeed/MenuSpeed';
 import ColorPicker from '../ColorPicker/ColorPicker';
 
 class Menu extends Component {
@@ -20,6 +21,8 @@ class Menu extends Component {
     this.setup = this.setup.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.selectColor = this.selectColor.bind(this);
+    this.selectSpeed = this.selectSpeed.bind(this);
+    this.selectTransition = this.selectTransition.bind(this);
   }
   componentWillUnmount() {
     document.removeEventListener("mousemove", this.handleMouseMove);
@@ -61,6 +64,12 @@ class Menu extends Component {
       });
     this.setState({colors: colors});
   }
+  selectSpeed(speed) {
+    this.setState({speed: speed});
+  }
+  selectTransition(transition) {
+    this.setState({transition: transition});
+  }
   render() {
     return (<div className="Menu" style={{
         visibility: this.state.displayMenu
@@ -91,32 +100,7 @@ class Menu extends Component {
             : '')} onClick={() => this.setState({blink: 1})}>Blink On/Off</button>
 
         <h3>Speed</h3>
-        <button className={"btn default " + (
-            this.state.speed === 1
-            ? 'selected'
-            : '')} onClick={() => this.setState({speed: 1})}>x1</button>
-        <button className={"btn default " + (
-            this.state.speed === 2
-            ? 'selected'
-            : '')} onClick={() => this.setState({speed: 2})}>x2</button>
-        <button className={"btn default " + (
-            this.state.speed === 4
-            ? 'selected'
-            : '')} onClick={() => this.setState({speed: 4})}>x4</button>
-        <button className={"btn default " + (
-            this.state.speed === 5
-            ? 'selected'
-            : '')} onClick={() => this.setState({speed: 5})}>x5</button>
-        <button className={"btn default " + (
-            this.state.speed === 10
-            ? 'selected'
-            : '')} onClick={() => this.setState({speed: 10})}>x10</button>
-        <button className={"btn default " + (
-            this.state.transition === true
-            ? 'selected'
-            : '')} onClick={() => this.setState({
-            transition: !this.state.transition
-          })}>Transition</button>
+        <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>
 
         <h3>Color</h3>
         <div>
