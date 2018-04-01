@@ -100,17 +100,23 @@ class Menu extends Component {
             ? 'selected'
             : '')} onClick={() => this.setState({speed: 2})}>x2</button>
         <button className={"btn default " + (
-            this.state.speed === 3
-            ? 'selected'
-            : '')} onClick={() => this.setState({speed: 3})}>x3</button>
-        <button className={"btn default " + (
             this.state.speed === 4
             ? 'selected'
             : '')} onClick={() => this.setState({speed: 4})}>x4</button>
         <button className={"btn default " + (
+            this.state.speed === 5
+            ? 'selected'
+            : '')} onClick={() => this.setState({speed: 5})}>x5</button>
+        <button className={"btn default " + (
+            this.state.speed === 10
+            ? 'selected'
+            : '')} onClick={() => this.setState({speed: 10})}>x10</button>
+        <button className={"btn default " + (
             this.state.transition === true
             ? 'selected'
-            : '')} onClick={() => this.setState({transition: !this.state.transition})}>Transition</button>
+            : '')} onClick={() => this.setState({
+            transition: !this.state.transition
+          })}>Transition</button>
 
         <h3>Color</h3>
         <div>
