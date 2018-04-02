@@ -1,7 +1,8 @@
-<center>
-  <img src="assets/logo.png" alt="logo" style="width: 150px">
-  <h1>strobe</h1>
-</center>
+<h1 align="center">strobe</h1>
+<p align="center">
+  <img alt="logo" width="200" src="assets/logo.png">
+</p>
+
 
 > The Poor Man's Strobe
 
