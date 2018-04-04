@@ -20,15 +20,18 @@ class Menu extends Component {
 
     this.setup = this.setup.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleMouseClick = this.handleMouseClick.bind(this);
     this.selectColor = this.selectColor.bind(this);
     this.selectSpeed = this.selectSpeed.bind(this);
     this.selectTransition = this.selectTransition.bind(this);
   }
   componentWillUnmount() {
     document.removeEventListener("mousemove", this.handleMouseMove);
+    document.removeEventListener("click", this.handleMouseClick);
   }
   componentDidMount() {
     document.addEventListener("mousemove", this.handleMouseMove);
+    document.addEventListener("click", this.handleMouseClick);
   }
   handleMouseMove() {
     if (this.state.displayMenu === false)
@@ -37,6 +40,9 @@ class Menu extends Component {
     this.timer = setTimeout(() => {
       this.setState({displayMenu: false});
     }, 1000);
+  }
+  handleMouseClick() {
+    this.setState({displayMenu: !this.state.displayMenu});
   }
   setup() {
     if (this.props.hasOwnProperty('setup')) {
