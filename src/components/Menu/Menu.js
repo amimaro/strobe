@@ -41,9 +41,12 @@ class Menu extends Component {
       this.setState({displayMenu: false});
     }, 1000);
   }
-  handleMouseClick() {
-    this.setState({displayMenu: !this.state.displayMenu});
-  }
+  handleMouseClick(event) {
+    if (event.target.tagName === 'DIV') 
+      this.setState({
+        displayMenu: !this.state.displayMenu
+      });
+    }
   setup() {
     if (this.props.hasOwnProperty('setup')) {
       let command = 'menu ' + (
