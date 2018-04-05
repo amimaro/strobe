@@ -26,11 +26,11 @@ class Menu extends Component {
     this.selectTransition = this.selectTransition.bind(this);
   }
   componentWillUnmount() {
-    document.removeEventListener("mousemove", this.handleMouseMove);
+    // document.removeEventListener("mousemove", this.handleMouseMove);
     document.removeEventListener("click", this.handleMouseClick);
   }
   componentDidMount() {
-    document.addEventListener("mousemove", this.handleMouseMove);
+    // document.addEventListener("mousemove", this.handleMouseMove);
     document.addEventListener("click", this.handleMouseClick);
   }
   handleMouseMove() {
@@ -42,7 +42,7 @@ class Menu extends Component {
     }, 1000);
   }
   handleMouseClick(event) {
-    if (event.target.tagName === 'DIV') 
+    if (event.target.tagName === 'DIV')
       this.setState({
         displayMenu: !this.state.displayMenu
       });
