@@ -4,6 +4,9 @@ import './MenuFooter.css';
 class MenuFooter extends Component {
   render() {
     return (<div className="MenuFooter">
+      <center>
+        <p>click on background to hide the menu</p>
+      </center>
       <hr/>
       <center>
         <p>
