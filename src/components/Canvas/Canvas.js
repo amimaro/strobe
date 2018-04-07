@@ -18,6 +18,7 @@ class Canvas extends Component {
     this.blink = this.blink.bind(this);
     this.setupSpeed = this.setupSpeed.bind(this);
     this.getColor = this.getColor.bind(this);
+    this.getRandomColor = this.getRandomColor.bind(this);
   }
   setParams(params) {
     this.setState({
@@ -86,16 +87,22 @@ class Canvas extends Component {
       case 'random':
         if (this.randomColorUpdate) {
           this.randomColorUpdate = false;
+          console.time()
           clearTimeout(this.randomUpdate);
           this.randomUpdate = setTimeout(() => {
             this.randomColorUpdate = true;
-            this.randomColor = '#' + (
-            Math.random() * 0xFFFFFF << 0).toString(16);
-          }, altParams.period * 1000);
+            this.randomColor1 = this.getRandomColor();
+            this.randomColor2 = this.getRandomColor();
+            console.timeEnd()
+          }, altParams.period * this.setupSpeed(params.speed) * 0.5);
         }
+        if (altParams.mode === 'double')
+          return this.tick === 0
+            ? this.randomColor2
+            : this.randomColor1;
         return this.tick === 0
           ? 'black'
-          : this.randomColor;
+          : this.randomColor1;
         break;
       default:
     }
@@ -103,6 +110,10 @@ class Canvas extends Component {
   }
   setColor(color) {
     this.setState({color: color});
+  }
+  getRandomColor() {
+    return '#' + (
+    Math.random() * 0xFFFFFF << 0).toString(16);
   }
   render() {
     return (<div className="Canvas" id="canvas" style={{
