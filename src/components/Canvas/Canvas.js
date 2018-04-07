@@ -17,6 +17,7 @@ class Canvas extends Component {
     this.setColor = this.setColor.bind(this);
     this.blink = this.blink.bind(this);
     this.setupSpeed = this.setupSpeed.bind(this);
+    this.getColor = this.getColor.bind(this);
   }
   setParams(params) {
     this.setState({
@@ -55,14 +56,13 @@ class Canvas extends Component {
     }, this.setupSpeed(params.speed));
   }
   blink() {
-    let params = this.state.params;
     if (this.tick === 0) { // state 1
       this.tick = 1;
-      this.setColor(params.colors[0].value);
     } else { // state 2
       this.tick = 0;
-      this.setColor('black');
     }
+    let color = this.getColor();
+    this.setColor(color);
   }
   setupSpeed(speed) {
     let SPEED_MS = Math.floor(1000 / speed);
@@ -77,6 +77,16 @@ class Canvas extends Component {
         : 0
     })
     return SPEED_MS;
+  }
+  getColor() {
+    let params = this.state.params;
+    switch (params.colors[0].value) {
+      case 'random':
+        return '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        break;
+      default:
+    }
+    return params.colors[this.tick].value;
   }
   setColor(color) {
     this.setState({color: color});
