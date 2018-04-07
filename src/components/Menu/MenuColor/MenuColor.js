@@ -14,6 +14,7 @@ class MenuColor extends Component {
     this.colors = [];
 
     this.selectColor = this.selectColor.bind(this);
+    this.setPeriod = this.setPeriod.bind(this);
   }
   selectColor(selectedColor) {
     console.log(`colorpicker id: ${selectedColor.id}, value: ${selectedColor.value}`)
@@ -41,6 +42,9 @@ class MenuColor extends Component {
       });
     this.props.setColors(this.colors);
   }
+  setPeriod(period) {
+    this.setState({period: period}, this.selectColor({id: '1', value: 'random', period: period}));
+  }
   render() {
     return (<div className="MenuColor">
       <button className={"btn default " + (
@@ -54,7 +58,7 @@ class MenuColor extends Component {
           ? 'selected'
           : '')} onClick={() => this.setState({
           colorOption: 2
-        }, this.selectColor({id: '1', value: 'random'}))}>Random Colors</button>
+        }, this.setPeriod(5))}>Random Colors</button>
       <div className="color-table">
         <div className="color-row">
           <div id="two-color" className="color-cell" style={{
@@ -88,23 +92,23 @@ class MenuColor extends Component {
                   <button className={"btn default " + (
                       this.state.period === 1
                       ? 'selected'
-                      : '')} onClick={() => this.setState({period: 1})}>1</button>
+                      : '')} onClick={() => this.setPeriod(1)}>1</button>
                   <button className={"btn default " + (
                       this.state.period === 5
                       ? 'selected'
-                      : '')} onClick={() => this.setState({period: 5})}>5</button>
+                      : '')} onClick={() => this.setPeriod(5)}>5</button>
                   <button className={"btn default " + (
                       this.state.period === 10
                       ? 'selected'
-                      : '')} onClick={() => this.setState({period: 10})}>10</button>
+                      : '')} onClick={() => this.setPeriod(10)}>10</button>
                   <button className={"btn default " + (
                       this.state.period === 30
                       ? 'selected'
-                      : '')} onClick={() => this.setState({period: 30})}>30</button>
+                      : '')} onClick={() => this.setPeriod(30)}>30</button>
                   <button className={"btn default " + (
                       this.state.period === 60
                       ? 'selected'
-                      : '')} onClick={() => this.setState({period: 60})}>60</button>
+                      : '')} onClick={() => this.setPeriod(60)}>60</button>
                 </div>
               </div>
             </div>
