@@ -43,6 +43,7 @@ class Canvas extends Component {
   play() {
     console.log('canvas play');
     this.tick = 0;
+    this.randomColorUpdate = true;
     let params = this.state.params;
 
     clearInterval(this.loop);
@@ -82,7 +83,7 @@ class Canvas extends Component {
     let params = this.state.params;
     switch (params.colors[0].value) {
       case 'random':
-        return '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        return this.tick === 0 ? 'black' : '#'+(Math.random()*0xFFFFFF<<0).toString(16);
         break;
       default:
     }
