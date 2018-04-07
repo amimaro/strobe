@@ -20,7 +20,7 @@ class MenuColor extends Component {
     console.log(`colorpicker id: ${selectedColor.id}, value: ${selectedColor.value}`)
     switch (selectedColor.value) {
       case 'random':
-        this.props.setColors(selectedColor);
+        this.props.setColors([selectedColor]);
         return;
         break;
       case 'two':
