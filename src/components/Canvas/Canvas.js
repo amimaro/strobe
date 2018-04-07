@@ -87,14 +87,12 @@ class Canvas extends Component {
       case 'random':
         if (this.randomColorUpdate) {
           this.randomColorUpdate = false;
-          console.time()
           clearTimeout(this.randomUpdate);
           this.randomUpdate = setTimeout(() => {
             this.randomColorUpdate = true;
             this.randomColor1 = this.getRandomColor();
             this.randomColor2 = this.getRandomColor();
-            console.timeEnd()
-          }, altParams.period * this.setupSpeed(params.speed) * 0.5);
+          }, altParams.period * 1200);
         }
         if (altParams.mode === 'double')
           return this.tick === 0
