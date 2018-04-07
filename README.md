@@ -19,7 +19,7 @@ Run `npm start` then open http://localhost:3000/.
 - [X] Blink
 - [ ] Random Blink
 - [ ] Color Palette
-- [ ] Random Color
+- [X] Random Color
 - [ ] Sound Sensor
 
 ## Contributing
