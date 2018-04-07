@@ -81,9 +81,21 @@ class Canvas extends Component {
   }
   getColor() {
     let params = this.state.params;
-    switch (params.colors[0].value) {
+    let altParams = this.state.params.colors[0];
+    switch (altParams.value) {
       case 'random':
-        return this.tick === 0 ? 'black' : '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        if (this.randomColorUpdate) {
+          this.randomColorUpdate = false;
+          clearTimeout(this.randomUpdate);
+          this.randomUpdate = setTimeout(() => {
+            this.randomColorUpdate = true;
+            this.randomColor = '#' + (
+            Math.random() * 0xFFFFFF << 0).toString(16);
+          }, altParams.period * 1000);
+        }
+        return this.tick === 0
+          ? 'black'
+          : this.randomColor;
         break;
       default:
     }
