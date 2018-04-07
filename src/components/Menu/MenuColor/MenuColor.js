@@ -8,13 +8,15 @@ class MenuColor extends Component {
     super(props);
     this.state = {
       colorOption: 1,
-      period: 5
+      period: 5,
+      double: false
     }
 
     this.colors = [];
 
     this.selectColor = this.selectColor.bind(this);
     this.setPeriod = this.setPeriod.bind(this);
+    this.setDouble = this.setDouble.bind(this);
   }
   selectColor(selectedColor) {
     console.log(`colorpicker id: ${selectedColor.id}, value: ${selectedColor.value}`)
@@ -43,7 +45,14 @@ class MenuColor extends Component {
     this.props.setColors(this.colors);
   }
   setPeriod(period) {
-    this.setState({period: period}, this.selectColor({id: '1', value: 'random', period: period}));
+    this.setState({
+      period: period
+    }, this.selectColor({id: '1', value: 'random', period: period, mode: this.state.double ? 'double' : ''}));
+  }
+  setDouble(double) {
+    this.setState({
+      double: double
+    }, this.selectColor({id: '1', value: 'random', period: this.state.period, mode: double ? 'double' : ''}));
   }
   render() {
     return (<div className="MenuColor">
@@ -109,6 +118,10 @@ class MenuColor extends Component {
                       this.state.period === 60
                       ? 'selected'
                       : '')} onClick={() => this.setPeriod(60)}>60</button>
+                  <button className={"btn default " + (
+                      this.state.double === true
+                      ? 'selected'
+                      : '')} onClick={() => this.setDouble(!this.state.double)}>Double</button>
                 </div>
               </div>
             </div>
