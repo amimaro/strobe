@@ -7,7 +7,7 @@ class MenuColor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      twoColor: true
+      colorOption: 1
     }
 
     this.colors = [];
@@ -32,20 +32,20 @@ class MenuColor extends Component {
   }
   render() {
     return (<div className="MenuColor">
-    <button className={"btn default " + (
-        this.state.twoColor === true
-        ? 'selected'
-        : '')} onClick={() => this.setState({
-        twoColor: !this.state.twoColor
-      })}>Two Colors</button>
+      <button className={"btn default " + (
+          this.state.colorOption === 1
+          ? 'selected'
+          : '')} onClick={() => this.setState({
+          colorOption: 1
+        })}>Two Colors</button>
       <div className="color-table">
         <div className="color-row">
-          <div id="two-color" className="color-cell"style={{
-              visibility: this.state.twoColor
+          <div id="two-color" className="color-cell" style={{
+              visibility: this.state.colorOption === 1
                 ? ''
                 : 'hidden'
             }}>
-            <div className="color-table" >
+            <div className="color-table">
               <p>Two Colors</p>
               <div className="color-row">
                 <div className="color-cell">
