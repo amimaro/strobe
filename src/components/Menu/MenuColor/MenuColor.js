@@ -38,6 +38,12 @@ class MenuColor extends Component {
           : '')} onClick={() => this.setState({
           colorOption: 1
         })}>Two Colors</button>
+      <button className={"btn default " + (
+          this.state.colorOption === 2
+          ? 'selected'
+          : '')} onClick={() => this.setState({
+          colorOption: 2
+        })}>Random Colors</button>
       <div className="color-table">
         <div className="color-row">
           <div id="two-color" className="color-cell" style={{
