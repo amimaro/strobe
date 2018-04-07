@@ -8,7 +8,7 @@ class MenuColor extends Component {
     super(props);
     this.state = {
       colorOption: 1,
-      changePeriod: 5
+      period: 5
     }
 
     this.colors = [];
@@ -86,25 +86,25 @@ class MenuColor extends Component {
               <div className="color-row">
                 <div className="color-cell">
                   <button className={"btn default " + (
-                      this.state.changePeriod === 1
+                      this.state.period === 1
                       ? 'selected'
-                      : '')} onClick={() => this.setState({changePeriod: 1})}>1</button>
+                      : '')} onClick={() => this.setState({period: 1})}>1</button>
                   <button className={"btn default " + (
-                      this.state.changePeriod === 5
+                      this.state.period === 5
                       ? 'selected'
-                      : '')} onClick={() => this.setState({changePeriod: 5})}>5</button>
+                      : '')} onClick={() => this.setState({period: 5})}>5</button>
                   <button className={"btn default " + (
-                      this.state.changePeriod === 10
+                      this.state.period === 10
                       ? 'selected'
-                      : '')} onClick={() => this.setState({changePeriod: 10})}>10</button>
+                      : '')} onClick={() => this.setState({period: 10})}>10</button>
                   <button className={"btn default " + (
-                      this.state.changePeriod === 30
+                      this.state.period === 30
                       ? 'selected'
-                      : '')} onClick={() => this.setState({changePeriod: 30})}>30</button>
+                      : '')} onClick={() => this.setState({period: 30})}>30</button>
                   <button className={"btn default " + (
-                      this.state.changePeriod === 60
+                      this.state.period === 60
                       ? 'selected'
-                      : '')} onClick={() => this.setState({changePeriod: 60})}>60</button>
+                      : '')} onClick={() => this.setState({period: 60})}>60</button>
                 </div>
               </div>
             </div>
