@@ -4,7 +4,7 @@ import './Menu.css';
 import MenuHeader from './MenuHeader/MenuHeader';
 import MenuFooter from './MenuFooter/MenuFooter';
 import MenuSpeed from './MenuSpeed/MenuSpeed';
-import ColorPicker from '../ColorPicker/ColorPicker';
+import MenuColor from './MenuColor/MenuColor';
 
 class Menu extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Menu extends Component {
     this.setup = this.setup.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleMouseClick = this.handleMouseClick.bind(this);
-    this.selectColor = this.selectColor.bind(this);
+    this.setColors = this.setColors.bind(this);
     this.selectSpeed = this.selectSpeed.bind(this);
     this.selectTransition = this.selectTransition.bind(this);
   }
@@ -57,20 +57,7 @@ class Menu extends Component {
       this.props.setup(this.state);
     }
   }
-  selectColor(selectedColor) {
-    console.log(`colorpicker id: ${selectedColor.id}, value: ${selectedColor.value}`)
-    let colors = this.state.colors;
-    let found = colors.find(function(color) {
-      return color.id === selectedColor.id;
-    });
-    if (!found)
-      colors.push(selectedColor);
-    else
-      colors = colors.map((color) => {
-        if (color.id === selectedColor.id)
-          return selectedColor;
-        return color;
-      });
+  setColors(colors) {
     this.setState({colors: colors});
   }
   selectSpeed(speed) {
@@ -112,13 +99,7 @@ class Menu extends Component {
         <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>
 
         <h3>Color</h3>
-        <div>
-          <div id="custom-color">
-            <label htmlFor="color-picker">Custom Color:&nbsp;</label>
-            <ColorPicker id="1" selectColor={this.selectColor} color="#ffffff"/>
-          </div>
-          <div id="random-color"></div>
-        </div>
+        <MenuColor setColors={this.setColors}/>
 
       </div>
       <MenuFooter/>
