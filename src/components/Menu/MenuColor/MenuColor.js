@@ -57,9 +57,9 @@ class MenuColor extends Component {
       <div className="color-table">
         <div className="color-row">
           <div id="two-color" className="color-cell" style={{
-              visibility: this.state.colorOption === 1
+              display: this.state.colorOption === 1
                 ? ''
-                : 'hidden'
+                : 'none'
             }}>
             <div className="color-table">
               <p>Two Colors</p>
