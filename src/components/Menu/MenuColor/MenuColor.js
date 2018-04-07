@@ -40,12 +40,12 @@ class MenuColor extends Component {
       })}>Two Colors</button>
       <div className="color-table">
         <div className="color-row">
-          <div id="two-color" className="color-cell">
-            <div className="color-table" style={{
-                visibility: this.state.twoColor
-                  ? ''
-                  : 'hidden'
-              }}>
+          <div id="two-color" className="color-cell"style={{
+              visibility: this.state.twoColor
+                ? ''
+                : 'hidden'
+            }}>
+            <div className="color-table" >
               <p>Two Colors</p>
               <div className="color-row">
                 <div className="color-cell">
