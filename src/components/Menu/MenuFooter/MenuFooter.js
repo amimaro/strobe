@@ -5,7 +5,7 @@ class MenuFooter extends Component {
   render() {
     return (<div className="MenuFooter">
       <center>
-        <p>click on background to hide the menu</p>
+        click on background to hide the menu
       </center>
       <hr/>
       <center>
