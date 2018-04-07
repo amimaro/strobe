@@ -6,6 +6,9 @@ import ColorPicker from '../../ColorPicker/ColorPicker';
 class MenuColor extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      twoColor: true
+    }
 
     this.colors = [];
 
@@ -29,10 +32,20 @@ class MenuColor extends Component {
   }
   render() {
     return (<div className="MenuColor">
+    <button className={"btn default " + (
+        this.state.twoColor === true
+        ? 'selected'
+        : '')} onClick={() => this.setState({
+        twoColor: !this.state.twoColor
+      })}>Two Colors</button>
       <div className="color-table">
         <div className="color-row">
-          <div className="color-cell">
-            <div className="color-table">
+          <div id="two-color" className="color-cell">
+            <div className="color-table" style={{
+                visibility: this.state.twoColor
+                  ? ''
+                  : 'hidden'
+              }}>
               <p>Two Colors</p>
               <div className="color-row">
                 <div className="color-cell">
