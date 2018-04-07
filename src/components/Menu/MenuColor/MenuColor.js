@@ -29,11 +29,25 @@ class MenuColor extends Component {
   }
   render() {
     return (<div className="MenuColor">
-      <div id="custom-color">
-        <label htmlFor="color-picker">Custom Color:&nbsp;</label>
-        <ColorPicker id="1" selectColor={this.selectColor} color="#ffffff"/>
+      <div className="color-table">
+        <div className="color-row">
+          <div className="color-cell">
+            <div className="color-table">
+              <p>Two Colors</p>
+              <div className="color-row">
+                <div className="color-cell">
+                  <label htmlFor="color-picker">Color 1:&nbsp;</label>
+                  <ColorPicker id="1" selectColor={this.selectColor} color="#ffffff"/>
+                </div>
+                <div className="color-cell">
+                  <label htmlFor="color-picker">Color 2:&nbsp;</label>
+                  <ColorPicker id="2" selectColor={this.selectColor} color="#000000"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="random-color"></div>
     </div>);
   }
 }

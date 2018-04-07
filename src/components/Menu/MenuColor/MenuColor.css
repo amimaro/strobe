@@ -1,0 +1,15 @@
+.MenuColor {
+  width: 100%;
+}
+
+.color-table {
+  display: table;
+}
+
+.color-row {
+  display: table-row;
+}
+
+.color-cell {
+  display: table-cell;
+}
