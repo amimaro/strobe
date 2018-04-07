@@ -16,19 +16,29 @@ class MenuColor extends Component {
   }
   selectColor(selectedColor) {
     console.log(`colorpicker id: ${selectedColor.id}, value: ${selectedColor.value}`)
-    let colors = this.colors;
-    let found = colors.find(function(color) {
+    switch (selectedColor.value) {
+      case 'random':
+        this.props.setColors(selectedColor);
+        return;
+        break;
+      case 'two':
+        this.props.setColors(this.colors);
+        return;
+        break;
+      default:
+    }
+    let found = this.colors.find(function(color) {
       return color.id === selectedColor.id;
     });
     if (!found)
-      colors.push(selectedColor);
+      this.colors.push(selectedColor);
     else
-      colors = colors.map((color) => {
+      this.colors = this.colors.map((color) => {
         if (color.id === selectedColor.id)
           return selectedColor;
         return color;
       });
-    this.props.setColors(colors);
+    this.props.setColors(this.colors);
   }
   render() {
     return (<div className="MenuColor">
@@ -37,13 +47,13 @@ class MenuColor extends Component {
           ? 'selected'
           : '')} onClick={() => this.setState({
           colorOption: 1
-        })}>Two Colors</button>
+        }, this.selectColor({id: '1', value: 'two'}))}>Two Colors</button>
       <button className={"btn default " + (
           this.state.colorOption === 2
           ? 'selected'
           : '')} onClick={() => this.setState({
           colorOption: 2
-        })}>Random Colors</button>
+        }, this.selectColor({id: '1', value: 'random'}))}>Random Colors</button>
       <div className="color-table">
         <div className="color-row">
           <div id="two-color" className="color-cell" style={{
