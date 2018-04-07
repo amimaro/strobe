@@ -11,6 +11,9 @@ class App extends Component {
 
     this.setParams = this.setParams.bind(this);
   }
+  componentDidMount() {
+    alert('click anywhere to display the menu');
+  }
   setParams(params) {
     console.log('app setParams')
     this.refs.canvas.setParams(params);
