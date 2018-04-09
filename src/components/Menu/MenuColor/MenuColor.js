@@ -47,12 +47,26 @@ class MenuColor extends Component {
   setPeriod(period) {
     this.setState({
       period: period
-    }, this.selectColor({id: '1', value: 'random', period: period, mode: this.state.double ? 'double' : ''}));
+    }, this.selectColor({
+      id: '1',
+      value: 'random',
+      period: period,
+      mode: this.state.double
+        ? 'double'
+        : ''
+    }));
   }
   setDouble(double) {
     this.setState({
       double: double
-    }, this.selectColor({id: '1', value: 'random', period: this.state.period, mode: double ? 'double' : ''}));
+    }, this.selectColor({
+      id: '1',
+      value: 'random',
+      period: this.state.period,
+      mode: double
+        ? 'double'
+        : ''
+    }));
   }
   render() {
     return (<div className="MenuColor">
@@ -68,6 +82,12 @@ class MenuColor extends Component {
           : '')} onClick={() => this.setState({
           colorOption: 2
         }, this.setPeriod(5))}>Random Colors</button>
+      <button className={"btn default " + (
+          this.state.colorOption === 3
+          ? 'selected'
+          : '')} onClick={() => this.setState({
+          colorOption: 3
+        }, this.selectColor({id: '1', value: 'two'}))}>Color Palette</button>
       <div className="color-table">
         <div className="color-row">
           <div id="two-color" className="color-cell" style={{
@@ -122,6 +142,25 @@ class MenuColor extends Component {
                       this.state.double === true
                       ? 'selected'
                       : '')} onClick={() => this.setDouble(!this.state.double)}>Double</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="two-color" className="color-cell" style={{
+              display: this.state.colorOption === 3
+                ? ''
+                : 'none'
+            }}>
+            <div className="color-table">
+              <p>Palette</p>
+              <div className="color-row">
+                <div className="color-cell">
+                  <label htmlFor="color-picker">Color 1:&nbsp;</label>
+                  <ColorPicker id="1" selectColor={this.selectColor} color="#ffffff"/>
+                </div>
+                <div className="color-cell">
+                  <label htmlFor="color-picker">Color 2:&nbsp;</label>
+                  <ColorPicker id="2" selectColor={this.selectColor} color="#000000"/>
                 </div>
               </div>
             </div>
