@@ -109,7 +109,7 @@ class MenuColor extends Component {
               </div>
             </div>
           </div>
-          <div id="two-color" className="color-cell" style={{
+          <div id="random-color" className="color-cell" style={{
               display: this.state.colorOption === 2
                 ? ''
                 : 'none'
@@ -146,7 +146,7 @@ class MenuColor extends Component {
               </div>
             </div>
           </div>
-          <div id="two-color" className="color-cell" style={{
+          <div id="palette-color" className="color-cell" style={{
               display: this.state.colorOption === 3
                 ? ''
                 : 'none'
