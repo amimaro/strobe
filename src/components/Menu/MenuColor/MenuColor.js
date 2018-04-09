@@ -17,6 +17,7 @@ class MenuColor extends Component {
     this.selectColor = this.selectColor.bind(this);
     this.setPeriod = this.setPeriod.bind(this);
     this.setDouble = this.setDouble.bind(this);
+    this.addColor = this.addColor.bind(this);
   }
   selectColor(selectedColor) {
     console.log(`colorpicker id: ${selectedColor.id}, value: ${selectedColor.value}`)
@@ -67,6 +68,9 @@ class MenuColor extends Component {
         ? 'double'
         : ''
     }));
+  }
+  addColor() {
+    
   }
   render() {
     return (<div className="MenuColor">
@@ -161,6 +165,9 @@ class MenuColor extends Component {
                 <div className="color-cell">
                   <label htmlFor="color-picker">Color 2:&nbsp;</label>
                   <ColorPicker id="2" selectColor={this.selectColor} color="#000000"/>
+                </div>
+                <div className="color-cell">
+                  <button className={"btn default"} onClick={() => this.addColor()}>+</button>
                 </div>
               </div>
             </div>
