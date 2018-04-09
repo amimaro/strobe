@@ -1,5 +1,7 @@
 .color-picker {
   background-color: rgba(0, 0, 0, 0.0);
+  border: 0px;
+  height: 40px;
 }
 
 .color-picker:hover {
