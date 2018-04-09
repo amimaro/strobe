@@ -70,7 +70,7 @@ class MenuColor extends Component {
     }));
   }
   addColor() {
-    
+
   }
   render() {
     return (<div className="MenuColor">
@@ -159,11 +159,9 @@ class MenuColor extends Component {
               <p>Palette</p>
               <div className="color-row">
                 <div className="color-cell">
-                  <label htmlFor="color-picker">Color 1:&nbsp;</label>
                   <ColorPicker id="1" selectColor={this.selectColor} color="#ffffff"/>
                 </div>
                 <div className="color-cell">
-                  <label htmlFor="color-picker">Color 2:&nbsp;</label>
                   <ColorPicker id="2" selectColor={this.selectColor} color="#000000"/>
                 </div>
                 <div className="color-cell">
