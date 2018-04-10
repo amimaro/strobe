@@ -82,7 +82,12 @@ class MenuColor extends Component {
     }));
   }
   addColor() {
-
+    let palette = this.state.palette;
+    let newItem = <div className="color-cell">
+      <ColorPicker id={palette.length - 1} selectColor={this.selectColor} color="#000000"/>
+    </div>;
+    palette.splice(palette.length-1, 0, newItem);
+    this.setState({palette: palette});
   }
   render() {
     return (<div className="MenuColor">
