@@ -18,6 +18,18 @@ class MenuColor extends Component {
     this.setPeriod = this.setPeriod.bind(this);
     this.setDouble = this.setDouble.bind(this);
     this.addColor = this.addColor.bind(this);
+
+    this.state.palette = [
+      <div className="color-cell">
+        <ColorPicker id="1" selectColor={this.selectColor} color="#ffffff"/>
+      </div>,
+      <div className="color-cell">
+        <ColorPicker id="2" selectColor={this.selectColor} color="#000000"/>
+      </div>,
+      <div className="color-cell">
+        <button className={"btn default"} onClick={() => this.addColor()}>+</button>
+      </div>
+    ]
   }
   selectColor(selectedColor) {
     console.log(`colorpicker id: ${selectedColor.id}, value: ${selectedColor.value}`)
@@ -158,15 +170,7 @@ class MenuColor extends Component {
             <div className="color-table">
               <p>Palette</p>
               <div className="color-row">
-                <div className="color-cell">
-                  <ColorPicker id="1" selectColor={this.selectColor} color="#ffffff"/>
-                </div>
-                <div className="color-cell">
-                  <ColorPicker id="2" selectColor={this.selectColor} color="#000000"/>
-                </div>
-                <div className="color-cell">
-                  <button className={"btn default"} onClick={() => this.addColor()}>+</button>
-                </div>
+                {this.state.palette}
               </div>
             </div>
           </div>
