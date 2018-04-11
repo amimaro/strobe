@@ -103,7 +103,7 @@ class MenuColor extends Component {
       palette.splice(palette.length - 3, 1);
       this.setState({palette: palette});
     } else {
-      alert('limit exceeded');
+      alert('minimum limit');
     }
   }
   render() {
