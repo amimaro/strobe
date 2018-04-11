@@ -18,6 +18,7 @@ class MenuColor extends Component {
     this.setPeriod = this.setPeriod.bind(this);
     this.setDouble = this.setDouble.bind(this);
     this.addColor = this.addColor.bind(this);
+    this.removeColor = this.removeColor.bind(this);
 
     this.state.palette = [
       <div className="color-cell">
@@ -91,6 +92,15 @@ class MenuColor extends Component {
         <ColorPicker id={palette.length - 2} selectColor={this.selectColor} color="#000000"/>
       </div>;
       palette.splice(palette.length - 1, 0, newItem);
+      this.setState({palette: palette});
+    } else {
+      alert('limit exceeded');
+    }
+  }
+  removeColor() {
+    let palette = this.state.palette;
+    if (palette.length > 2) {
+      palette.splice(palette.length - 2, 0);
       this.setState({palette: palette});
     } else {
       alert('limit exceeded');
