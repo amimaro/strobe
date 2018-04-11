@@ -91,7 +91,7 @@ class MenuColor extends Component {
       let newItem = <div className="color-cell">
         <ColorPicker id={palette.length - 2} selectColor={this.selectColor} color="#000000"/>
       </div>;
-      palette.splice(palette.length - 1, 0, newItem);
+      palette.splice(palette.length - 2, 0, newItem);
       this.setState({palette: palette});
     } else {
       alert('limit exceeded');
