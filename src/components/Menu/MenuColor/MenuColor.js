@@ -99,7 +99,7 @@ class MenuColor extends Component {
   }
   removeColor() {
     let palette = this.state.palette;
-    if (palette.length > 3) {
+    if (palette.length > 4) {
       palette.splice(palette.length - 3, 1);
       this.setState({palette: palette});
     } else {
