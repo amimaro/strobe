@@ -99,8 +99,8 @@ class MenuColor extends Component {
   }
   removeColor() {
     let palette = this.state.palette;
-    if (palette.length > 2) {
-      palette.splice(palette.length - 2, 0);
+    if (palette.length > 3) {
+      palette.splice(palette.length - 3, 1);
       this.setState({palette: palette});
     } else {
       alert('limit exceeded');
