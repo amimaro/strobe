@@ -101,6 +101,7 @@ class MenuColor extends Component {
     let palette = this.state.palette;
     if (palette.length > 4) {
       palette.splice(palette.length - 3, 1);
+      this.colors.splice(this.colors.length-1, 1);
       this.setState({palette: palette});
     } else {
       alert('minimum limit');
