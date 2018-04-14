@@ -26,12 +26,6 @@ class MenuColor extends Component {
       </div>,
       <div className="color-cell" key="2">
         <ColorPicker id="2" selectColor={this.selectColor} color="#000000"/>
-      </div>,
-      <div className="color-cell" key="plus">
-        <button className={"btn default"} onClick={() => this.addColor()}>+</button>
-      </div>,
-      <div className="color-cell" key="minus">
-        <button className={"btn default"} onClick={() => this.removeColor()}>-</button>
       </div>
     ]
   }
@@ -88,10 +82,11 @@ class MenuColor extends Component {
   addColor() {
     let palette = this.state.palette;
     if (palette.length < 15) {
-      let newItem = <div className="color-cell" key={palette.length - 1}>
-        <ColorPicker id={''+(palette.length - 1)} selectColor={this.selectColor} color="#000000"/>
+      let newItem = <div className="color-cell" key={palette.length}>
+        <ColorPicker id={'' + (
+          palette.length)} selectColor={this.selectColor} color="#000000"/>
       </div>;
-      palette.splice(palette.length - 2, 0, newItem);
+      palette.splice(palette.length - 1, 0, newItem);
       this.setState({palette: palette});
     } else {
       alert('limit exceeded');
@@ -99,9 +94,9 @@ class MenuColor extends Component {
   }
   removeColor() {
     let palette = this.state.palette;
-    if (palette.length > 4) {
-      palette.splice(palette.length - 3, 1);
-      this.colors.splice(this.colors.length-1, 1);
+    if (palette.length > 2) {
+      palette.splice(palette.length - 2, 1);
+      this.colors.splice(this.colors.length, 1);
       this.setState({palette: palette});
     } else {
       alert('minimum limit');
@@ -191,7 +186,15 @@ class MenuColor extends Component {
                 : 'none'
             }}>
             <div className="color-table">
-              <p>Palette</p>
+              <div className="color-row">
+                <p>Palette</p>
+                <div className="color-cell" key="plus">
+                  <button className={"btn default"} onClick={() => this.addColor()}>+</button>
+                </div>
+                <div className="color-cell" key="minus">
+                  <button className={"btn default"} onClick={() => this.removeColor()}>-</button>
+                </div>
+              </div>
               <div className="color-row">
                 {this.state.palette}
               </div>
