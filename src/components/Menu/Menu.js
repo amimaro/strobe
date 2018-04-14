@@ -3,6 +3,7 @@ import './Menu.css';
 
 import MenuHeader from './MenuHeader/MenuHeader';
 import MenuFooter from './MenuFooter/MenuFooter';
+import MenuBlink from './MenuBlink/MenuBlink';
 import MenuSpeed from './MenuSpeed/MenuSpeed';
 import MenuColor from './MenuColor/MenuColor';
 
@@ -66,6 +67,9 @@ class Menu extends Component {
   selectTransition(transition) {
     this.setState({transition: transition});
   }
+  selectBlink(blink) {
+    this.setState({blink: blink});
+  }
   render() {
     return (<div className="Menu" style={{
         visibility: this.state.displayMenu
@@ -90,10 +94,7 @@ class Menu extends Component {
           <i className="fas fa-stop">&nbsp;</i>Stop</button>
 
         <h3>Blinking Style</h3>
-        <button className={"btn default " + (
-            this.state.blink === 1
-            ? 'selected'
-            : '')} onClick={() => this.setState({blink: 1})}>Blink On/Off</button>
+        <MenuBlink selectBlink={this.selectSpeed}/>
 
         <h3>Speed</h3>
         <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>
