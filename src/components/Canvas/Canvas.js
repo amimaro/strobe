@@ -49,12 +49,13 @@ class Canvas extends Component {
 
     clearInterval(this.loop);
     this.loop = setInterval(() => {
-      switch (params.blink) {
-        case 1:
-          this.blink();
-          break;
-        default:
-      }
+      this.blink();
+      // switch (params.blink) {
+      //   case 1:
+      //     this.blink();
+      //     break;
+      //   default:
+      // }
     }, this.setupSpeed(params.speed));
   }
   blink() {
