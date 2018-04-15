@@ -17,7 +17,7 @@ Run `npm start` then open http://localhost:3000/.
 ## TODO
 
 - [X] Blink
-- [ ] Color Palette
+- [X] Color Palette
 - [X] Random Color
 - [ ] Sound Sensor
 
