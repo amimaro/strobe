@@ -82,11 +82,11 @@ class MenuColor extends Component {
   addColor() {
     let palette = this.state.palette;
     if (palette.length < 15) {
-      let newItem = <div className="color-cell" key={palette.length}>
+      let newItem = <div className="color-cell" key={palette.length + 1}>
         <ColorPicker id={'' + (
-          palette.length)} selectColor={this.selectColor} color="#000000"/>
+          palette.length + 1)} selectColor={this.selectColor} color="#000000"/>
       </div>;
-      palette.splice(palette.length - 1, 0, newItem);
+      palette.splice(palette.length, 0, newItem);
       this.setState({palette: palette});
     } else {
       alert('limit exceeded');
@@ -95,7 +95,7 @@ class MenuColor extends Component {
   removeColor() {
     let palette = this.state.palette;
     if (palette.length > 2) {
-      palette.splice(palette.length - 2, 1);
+      palette.splice(palette.length - 1, 1);
       this.colors.splice(this.colors.length, 1);
       this.setState({palette: palette});
     } else {
