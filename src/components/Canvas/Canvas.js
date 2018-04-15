@@ -45,40 +45,47 @@ class Canvas extends Component {
     console.log('canvas play');
     this.tick = 0;
     this.randomColorUpdate = true;
-    let params = this.state.params;
 
-    clearInterval(this.loop);
-    this.loop = setInterval(() => {
-      this.blink();
-      // switch (params.blink) {
-      //   case 1:
-      //     this.blink();
-      //     break;
-      //   default:
-      // }
-    }, this.setupSpeed(params.speed));
+    this.blink();
+    // switch (params.blink) {
+    //   case 1:
+    //     this.blink();
+    //     break;
+    //   default:
+    // }
   }
   blink() {
-    if (this.tick === 0) { // state 1
-      this.tick = 1;
-    } else { // state 2
-      this.tick = 0;
-    }
-    let color = this.getColor();
-    this.setColor(color);
+    let params = this.state.params;
+    clearInterval(this.loop);
+    this.loop = setInterval(() => {
+      if (this.tick === 0) { // state 1
+        this.tick = 1;
+      } else { // state 2
+        this.tick = 0;
+      }
+      let color = this.getColor();
+      this.setColor(color);
+    }, this.setupSpeed(params.speed));
   }
   setupSpeed(speed) {
+    let params = this.state.params;
     let SPEED_MS = Math.floor(1000 / speed);
     let SPEED_S = (1000 / speed / 1000).toFixed(2);
+
+    if (params.blink === 2) {
+      SPEED_MS *= (Math.random() - 0.5);
+    }
+
     console.log(
-      `speed ${SPEED_MS}ms ${SPEED_S}s ${this.state.params.transition
+      `speed ${SPEED_MS}ms ${SPEED_S}s ${params.transition
       ? 'with'
       : 'without'} transition`);
     this.setState({
-      transitionPeriod: this.state.params.transition
+      transitionPeriod: params.transition
         ? SPEED_S
         : 0
     })
+
     return SPEED_MS;
   }
   getColor() {
