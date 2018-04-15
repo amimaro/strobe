@@ -44,6 +44,7 @@ class Canvas extends Component {
   play() {
     console.log('canvas play');
     this.tick = 0;
+    this.colorIndex = -1;
     this.randomColorUpdate = true;
 
     this.blink();
@@ -90,7 +91,9 @@ class Canvas extends Component {
   }
   getColor() {
     let params = this.state.params;
-    let altParams = this.state.params.colors[0];
+    let altParams = params.colors[0];
+    let colorLen = params.colors.length;
+
     switch (altParams.value) {
       case 'random':
         if (this.randomColorUpdate) {
@@ -112,7 +115,12 @@ class Canvas extends Component {
         break;
       default:
     }
-    return params.colors[this.tick].value;
+
+    this.colorIndex++;
+    if(this.colorIndex >= colorLen)
+      this.colorIndex = 0;
+
+    return params.colors[this.colorIndex].value;
   }
   setColor(color) {
     this.setState({color: color});
