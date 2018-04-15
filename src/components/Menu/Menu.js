@@ -25,6 +25,7 @@ class Menu extends Component {
     this.setColors = this.setColors.bind(this);
     this.selectSpeed = this.selectSpeed.bind(this);
     this.selectTransition = this.selectTransition.bind(this);
+    this.selectBlink = this.selectBlink.bind(this);
   }
   componentWillUnmount() {
     // document.removeEventListener("mousemove", this.handleMouseMove);
@@ -94,7 +95,7 @@ class Menu extends Component {
           <i className="fas fa-stop">&nbsp;</i>Stop</button>
 
         <h3>Blinking Style</h3>
-        <MenuBlink selectBlink={this.selectSpeed}/>
+        <MenuBlink selectBlink={this.selectBlink}/>
 
         <h3>Speed</h3>
         <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>
