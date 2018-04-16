@@ -16,6 +16,12 @@ class MenuBlink extends Component {
           : '')} onClick={() => this.setState({
           blink: 1
         }, this.props.selectBlink(1))}>Blink On/Off</button>
+      <button className={"btn default " + (
+          this.state.blink === 2
+          ? 'selected'
+          : '')} onClick={() => this.setState({
+          blink: 2
+        }, this.props.selectBlink(2))}>Sound Sensor</button>
     </div>);
   }
 }
