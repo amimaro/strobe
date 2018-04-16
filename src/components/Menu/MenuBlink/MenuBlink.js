@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './MenuBlink.css';
+import AudioService from '../../../services/AudioService.js';
 
 class MenuBlink extends Component {
   constructor(props) {
@@ -7,6 +8,13 @@ class MenuBlink extends Component {
     this.state = {
       blink: 1
     }
+
+    this.audioService = new AudioService();
+
+    this.startAudio = this.startAudio.bind(this);
+  }
+  startAudio() {
+    this.audioService.start();
   }
   render() {
     return (<div className="MenuBlink">
@@ -19,9 +27,12 @@ class MenuBlink extends Component {
       <button className={"btn default " + (
           this.state.blink === 2
           ? 'selected'
-          : '')} onClick={() => this.setState({
-          blink: 2
-        }, this.props.selectBlink(2))}>Sound Sensor</button>
+          : '')} onClick={() => {
+          this.setState({
+            blink: 2
+          }, this.props.selectBlink(2));
+          this.startAudio();
+        }}>Sound Sensor</button>
     </div>);
   }
 }
