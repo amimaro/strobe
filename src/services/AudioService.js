@@ -1,4 +1,15 @@
-class AudioService {
+import React, {Component} from 'react';
+import './AudioService.css';
+
+class AudioService extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: false
+    }
+
+    this.start = this.start.bind(this);
+  }
   start() {
     // Older browsers might not implement mediaDevices at all, so we set an empty object first
     if (navigator.mediaDevices === undefined) {
@@ -50,23 +61,23 @@ class AudioService {
       var constraints = {
         audio: true
       }
-      navigator.mediaDevices.getUserMedia(constraints)
-        .then(
-          function(stream) {
-            source = audioCtx.createMediaStreamSource(stream);
-            source.connect(analyser);
-            analyser.connect(distortion);
-            distortion.connect(biquadFilter);
-            biquadFilter.connect(convolver);
-            convolver.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-          })
-        .catch(function(err) {
-          console.log('The following gUM error occured: ' + err);
-        })
+      navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+        source = audioCtx.createMediaStreamSource(stream);
+        source.connect(analyser);
+        analyser.connect(distortion);
+        distortion.connect(biquadFilter);
+        biquadFilter.connect(convolver);
+        convolver.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+      }).catch(function(err) {
+        console.log('The following gUM error occured: ' + err);
+      })
     } else {
       console.log('getUserMedia not supported on your browser!');
     }
+  }
+  render() {
+    return (<div className="AudioService" id="audio-service"></div>);
   }
 }
 
