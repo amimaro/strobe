@@ -4,7 +4,7 @@ import './App.css';
 
 import Canvas from './components/Canvas/Canvas';
 import Menu from './components/Menu/Menu';
-import AudioService from './services/AudioService.js';
+import Audio from './components/Audio/Audio';
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends Component {
     return (<div className="App">
       <Menu setup={this.setParams}/>
       <Canvas ref="canvas"/>
-      <AudioService/>
+      <Audio/>
     </div>);
   }
 }

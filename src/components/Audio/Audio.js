@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import './AudioService.css';
+import './Audio.css';
 
-class AudioService extends Component {
+class Audio extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      status: false
-    }
+
+    this.status = false;
 
     this.start = this.start.bind(this);
+    this.getStatus = this.getStatus.bind(this);
+  }
+  getStatus() {
+    return this.status;
   }
   start() {
     // Older browsers might not implement mediaDevices at all, so we set an empty object first
@@ -28,6 +31,7 @@ class AudioService extends Component {
         // Some browsers just don't implement it - return a rejected promise with an error
         // to keep a consistent interface
         if (!getUserMedia) {
+          this.status = false;
           return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
         }
 
@@ -69,16 +73,20 @@ class AudioService extends Component {
         biquadFilter.connect(convolver);
         convolver.connect(gainNode);
         gainNode.connect(audioCtx.destination);
+
+        this.status = true;
       }).catch(function(err) {
         console.log('The following gUM error occured: ' + err);
+        this.status = false;
       })
     } else {
       console.log('getUserMedia not supported on your browser!');
+      this.status = false;
     }
   }
   render() {
-    return (<div className="AudioService" id="audio-service"></div>);
+    return (<div className="Audio" id="audio"></div>);
   }
 }
 
-export default AudioService;
+export default Audio;
