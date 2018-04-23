@@ -16,7 +16,7 @@ class MenuBlink extends Component {
   }
   selectSoundSensor() {
     this.audio.start().then((res) => {
-      this.audio.setStream(res);
+      this.audio.setAudioStream(res);
       if (res) {
         this.setState({
           blink: 2

@@ -1,7 +1,7 @@
 class Audio {
   constructor() {
+    this.audioStream = null;
     this.status = false;
-    this.stream = null;
     this.constraints = {
       audio: true
     }
@@ -12,17 +12,15 @@ class Audio {
   setStatus(status) {
     this.status = status;
   }
-  getStream() {
-    return this.stream;
+  getAudioStream() {
+    return this.audioStream;
   }
-  setStream(stream) {
-    this.stream = stream;
+  setAudioStream(audioStream) {
+    this.audioStream = audioStream;
   }
   stop() {
-    if (this.getStream()) {
-      let audioTrack = this.getStream().getTracks()[0];
-      audioTrack.stop();
-    }
+    if (this.getAudioStream())
+      (this.getAudioStream().stream.getTracks()[0]).stop();
   }
   start() {
     // Older browsers might not implement mediaDevices at all, so we set an empty object first
@@ -83,7 +81,16 @@ class Audio {
         biquadFilter.connect(convolver);
         convolver.connect(gainNode);
         gainNode.connect(audioCtx.destination);
-        return Promise.resolve(stream);
+        let audioObj = {
+          stream: stream,
+          source: source,
+          analyser: analyser,
+          distortion: distortion,
+          biquadFilter: biquadFilter,
+          convolver: convolver,
+          gainNode: gainNode
+        }
+        return Promise.resolve(audioObj);
       }).catch(function(err) {
         console.log('The following gUM error occured: ' + err);
         return Promise.reject(new Error('The following gUM error occured: ' + err));
