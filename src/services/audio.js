@@ -18,6 +18,12 @@ class Audio {
   setAudioStream(audioStream) {
     this.audioStream = audioStream;
   }
+  play() {
+    let audioStream = this.getAudioStream();
+    var bufferLengthAlt = audioStream.analyser.frequencyBinCount;
+    console.log(bufferLengthAlt);
+    var dataArrayAlt = new Uint8Array(bufferLengthAlt);
+  }
   stop() {
     if (this.getAudioStream())
       (this.getAudioStream().stream.getTracks()[0]).stop();
