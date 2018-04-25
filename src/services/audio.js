@@ -5,6 +5,8 @@ class Audio {
     this.constraints = {
       audio: true
     }
+
+    this.PERIOD_MS = 1000;
   }
   getStatus() {
     return this.status;
@@ -19,10 +21,17 @@ class Audio {
     this.audioStream = audioStream;
   }
   play() {
-    let audioStream = this.getAudioStream();
-    var bufferLengthAlt = audioStream.analyser.frequencyBinCount;
-    console.log(bufferLengthAlt);
-    var dataArrayAlt = new Uint8Array(bufferLengthAlt);
+    clearInterval(this.loop)
+    this.loop = setInterval(() => {
+      let audioStream = this.getAudioStream();
+      let bufferLengthAlt = audioStream.analyser.frequencyBinCount;
+      let dataArrayAlt = new Uint8Array(bufferLengthAlt);
+
+      audioStream.analyser.getByteFrequencyData(dataArrayAlt);
+      for (let i = 0; i < bufferLengthAlt; i++) {
+        let barHeight = dataArrayAlt[i];
+      }
+    }, this.PERIOD_MS)
   }
   stop() {
     if (this.getAudioStream())
