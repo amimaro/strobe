@@ -22,11 +22,12 @@ class MenuBlink extends Component {
           blink: 2
         }, this.props.selectBlink(2));
       }
-      this.audio.play();
     }).catch((err) => {
       this.setState({
         blink: 1
       }, this.props.selectBlink(1));
+    }).finally(()=> {
+      this.audio.play();
     })
   }
   disableSound() {
