@@ -12,7 +12,6 @@ class MenuBlink extends Component {
     this.audio = new Audio();
     this.selectSoundSensor = this.selectSoundSensor.bind(this);
     this.disableSound = this.disableSound.bind(this);
-    this.audio.stop();
   }
   selectSoundSensor() {
     this.audio.connect().then((res) => {
@@ -31,7 +30,7 @@ class MenuBlink extends Component {
     })
   }
   disableSound() {
-    this.audio.stop();
+    this.audio.disconnect();
   }
   render() {
     return (<div className="MenuBlink">
