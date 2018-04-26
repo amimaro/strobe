@@ -27,7 +27,7 @@ class Audio {
 
     return dataArray;
   }
-  stop() {
+  disconnect() {
     if (this.getAudioStream())
       (this.getAudioStream().stream.getTracks()[0]).stop();
   }
