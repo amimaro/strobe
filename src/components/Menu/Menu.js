@@ -16,7 +16,8 @@ class Menu extends Component {
       transition: false,
       blink: 1,
       control: 2,
-      colors: []
+      colors: [],
+      audio: null
     };
 
     this.setup = this.setup.bind(this);
@@ -26,6 +27,7 @@ class Menu extends Component {
     this.selectSpeed = this.selectSpeed.bind(this);
     this.selectTransition = this.selectTransition.bind(this);
     this.selectBlink = this.selectBlink.bind(this);
+    this.setAudioObj = this.setAudioObj.bind(this);
   }
   componentWillUnmount() {
     // document.removeEventListener("mousemove", this.handleMouseMove);
@@ -71,6 +73,9 @@ class Menu extends Component {
   selectBlink(blink) {
     this.setState({blink: blink});
   }
+  setAudioObj(audio) {
+    this.setState({audio: audio});
+  }
   render() {
     return (<div className="Menu" style={{
         visibility: this.state.displayMenu
@@ -95,7 +100,7 @@ class Menu extends Component {
           <i className="fas fa-stop">&nbsp;</i>Stop</button>
 
         <h3>Blinking Style</h3>
-        <MenuBlink selectBlink={this.selectBlink}/>
+        <MenuBlink selectBlink={this.selectBlink} setAudioObj={this.setAudioObj}/>
 
         <h3>Speed</h3>
         <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>

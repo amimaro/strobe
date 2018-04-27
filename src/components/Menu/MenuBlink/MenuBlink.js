@@ -19,15 +19,16 @@ class MenuBlink extends Component {
       if (res) {
         this.setState({
           blink: 2
-        }, this.props.selectBlink(2));
+        }, () => {
+          this.props.selectBlink(2);
+          this.props.setAudioObj(this.audio);
+        });
       }
     }).catch((err) => {
       this.setState({
         blink: 1
       }, this.props.selectBlink(1));
-    }).finally(()=> {
-      this.audio.play();
-    })
+    });
   }
   disableSound() {
     this.audio.disconnect();
