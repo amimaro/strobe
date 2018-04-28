@@ -10,6 +10,8 @@ class Canvas extends Component {
       transitionPeriod: '0'
     }
 
+    this.max = -1;
+
     this.setParams = this.setParams.bind(this);
     this.setupParams = this.setupParams.bind(this);
     this.play = this.play.bind(this);
@@ -76,7 +78,15 @@ class Canvas extends Component {
     clearInterval(this.loop);
     this.loop = setInterval(() => {
       let audioBuffer = this.state.params.audio.getBuffer();
-      // this.setColor(color);
+      let sum = audioBuffer.reduce((p, c) => {
+        return p + c
+      });
+      if (sum > this.max)
+        this.max = sum;
+      console.log(audioBuffer);
+      console.log(sum, this.max);
+      let color = this.value2HexColor(sum / this.max);
+      this.setColor(color);
     }, this.setupSpeed(params.speed));
   }
   setupSpeed(speed) {
@@ -139,6 +149,10 @@ class Canvas extends Component {
   getRandomColor() {
     return '#' + (
     Math.random() * 0xFFFFFF << 0).toString(16);
+  }
+  value2HexColor(value) {
+    return '#' + (
+    value * 0xFFFFFF << 0).toString(16);
   }
   render() {
     return (<div className="Canvas" id="canvas" style={{
