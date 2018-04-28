@@ -6,6 +6,8 @@ class Audio {
       audio: true
     }
 
+    this.PERIOD = 10;
+    this.buffer = [];
   }
   getStatus() {
     return this.status;
@@ -13,23 +15,36 @@ class Audio {
   setStatus(status) {
     this.status = status;
   }
+  getBuffer() {
+    return this.buffer;
+  }
+  setBuffer(buffer) {
+    this.buffer = buffer;
+  }
   getAudioStream() {
     return this.audioStream;
   }
   setAudioStream(audioStream) {
     this.audioStream = audioStream;
   }
-  getAudio() {
-    let audioStream = this.getAudioStream();
-    let bufferLength = audioStream.analyser.frequencyBinCount;
-    let dataArray = new Uint8Array(bufferLength);
-    audioStream.analyser.getByteFrequencyData(dataArray);
-
-    return dataArray;
+  play() {
+    clearInterval(this.loop);
+    setInterval(() => {
+      let audioStream = this.getAudioStream();
+      let bufferLength = audioStream.analyser.frequencyBinCount;
+      let dataArray = new Uint8Array(bufferLength);
+      audioStream.analyser.getByteFrequencyData(dataArray);
+      this.setBuffer(dataArray);
+    }, this.PERIOD);
+  }
+  stop() {
+    clearInterval(this.loop);
   }
   disconnect() {
-    if (this.getAudioStream())
+    if (this.getAudioStream()) {
+      clearInterval(this.loop);
       (this.getAudioStream().stream.getTracks()[0]).stop();
+    }
   }
   connect() {
     // Older browsers might not implement mediaDevices at all, so we set an empty object first
