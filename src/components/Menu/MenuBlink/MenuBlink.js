@@ -22,6 +22,7 @@ class MenuBlink extends Component {
         }, () => {
           this.props.selectBlink(2);
           this.props.setAudioObj(this.audio);
+          this.audio.play();
         });
       }
     }).catch((err) => {
