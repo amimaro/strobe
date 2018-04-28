@@ -102,11 +102,17 @@ class Menu extends Component {
         <h3>Blinking Style</h3>
         <MenuBlink selectBlink={this.selectBlink} setAudioObj={this.setAudioObj}/>
 
-        <h3>Speed</h3>
-        <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>
+        <div style={{
+            visibility: this.state.blink === 1
+              ? ''
+              : 'hidden'
+          }}>
+          <h3>Speed</h3>
+          <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>
 
-        <h3>Color</h3>
-        <MenuColor setColors={this.setColors}/>
+          <h3>Color</h3>
+          <MenuColor setColors={this.setColors}/>
+        </div>
 
       </div>
       <MenuFooter/>
