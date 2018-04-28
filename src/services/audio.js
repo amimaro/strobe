@@ -28,6 +28,7 @@ class Audio {
     this.audioStream = audioStream;
   }
   play() {
+    console.log('Audio Play');
     clearInterval(this.loop);
     setInterval(() => {
       let audioStream = this.getAudioStream();
@@ -38,11 +39,12 @@ class Audio {
     }, this.PERIOD);
   }
   stop() {
+    console.log('Audio Stop');
     clearInterval(this.loop);
   }
   disconnect() {
     if (this.getAudioStream()) {
-      clearInterval(this.loop);
+      this.stop();
       (this.getAudioStream().stream.getTracks()[0]).stop();
     }
   }
