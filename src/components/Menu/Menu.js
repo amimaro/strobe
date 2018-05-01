@@ -6,6 +6,7 @@ import MenuFooter from './MenuFooter/MenuFooter';
 import MenuBlink from './MenuBlink/MenuBlink';
 import MenuSpeed from './MenuSpeed/MenuSpeed';
 import MenuColor from './MenuColor/MenuColor';
+import MenuSound from './MenuSound/MenuSound';
 
 class Menu extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Menu extends Component {
       blink: 1,
       control: 2,
       colors: [],
+      soundSense: 1,
       audio: null
     };
 
@@ -26,6 +28,7 @@ class Menu extends Component {
     this.setColors = this.setColors.bind(this);
     this.selectSpeed = this.selectSpeed.bind(this);
     this.selectTransition = this.selectTransition.bind(this);
+    this.selectSoundSense = this.selectSoundSense.bind(this);
     this.selectBlink = this.selectBlink.bind(this);
     this.setAudioObj = this.setAudioObj.bind(this);
   }
@@ -61,9 +64,6 @@ class Menu extends Component {
       this.props.setup(this.state);
     }
   }
-  setColors(colors) {
-    this.setState({colors: colors});
-  }
   selectSpeed(speed) {
     this.setState({speed: speed});
   }
@@ -72,6 +72,12 @@ class Menu extends Component {
   }
   selectBlink(blink) {
     this.setState({blink: blink});
+  }
+  selectSoundSense(soundSense) {
+    this.setState({soundSense: soundSense});
+  }
+  setColors(colors) {
+    this.setState({colors: colors});
   }
   setAudioObj(audio) {
     this.setState({audio: audio});
@@ -103,17 +109,23 @@ class Menu extends Component {
         <MenuBlink selectBlink={this.selectBlink} setAudioObj={this.setAudioObj}/>
 
         <div style={{
-            visibility: this.state.blink === 1
+            display: this.state.blink === 1
               ? ''
-              : 'hidden'
+              : 'none'
           }}>
           <h3>Speed</h3>
           <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>
-
           <h3>Color</h3>
           <MenuColor setColors={this.setColors}/>
         </div>
-
+        <div style={{
+            display: this.state.blink === 2
+              ? ''
+              : 'none'
+          }}>
+          <h3>Sound Sense</h3>
+          <MenuSound selectSoundSense={this.selectSoundSense}/>
+        </div>
       </div>
       <MenuFooter/>
     </div>);
