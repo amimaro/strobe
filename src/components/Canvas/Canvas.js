@@ -21,6 +21,8 @@ class Canvas extends Component {
     this.setupSpeed = this.setupSpeed.bind(this);
     this.getColor = this.getColor.bind(this);
     this.getRandomColor = this.getRandomColor.bind(this);
+    this.blinkBySoundRange = this.blinkBySoundRange.bind(this);
+    this.blinkBySoundBeats = this.blinkBySoundBeats.bind(this);
   }
   setParams(params) {
     this.setState({
@@ -74,6 +76,34 @@ class Canvas extends Component {
     }, this.setupSpeed(params.speed));
   }
   soundSense() {
+    let params = this.state.params;
+    switch (params.soundSense) {
+      case 1:
+        this.blinkBySoundRange();
+        break;
+      case 2:
+        this.blinkBySoundBeats();
+        break;
+      default:
+    }
+  }
+  blinkBySoundRange() {
+    let params = this.state.params;
+    clearInterval(this.loop);
+    this.loop = setInterval(() => {
+      let audioBuffer = this.state.params.audio.getBuffer();
+      let sum = audioBuffer.reduce((p, c) => {
+        return p + c
+      });
+      if (sum > this.max)
+        this.max = sum;
+      console.log(audioBuffer);
+      console.log(sum, this.max);
+      let color = this.value2HexColor(sum / this.max);
+      this.setColor(color);
+    }, this.setupSpeed(params.speed));
+  }
+  blinkBySoundBeats() {
     let params = this.state.params;
     clearInterval(this.loop);
     this.loop = setInterval(() => {
