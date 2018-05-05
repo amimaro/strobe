@@ -104,9 +104,15 @@ class Menu extends Component {
             control: 2
           }, this.setup)}>
           <i className="fas fa-stop">&nbsp;</i>Stop</button>
+        <button className={"btn default " + (
+            this.state.transition === true
+            ? 'selected'
+            : '')} onClick={() => this.setState({
+            transition: !this.state.transition
+          })}>Transition</button>
 
         <h3>Blinking Style</h3>
-        <MenuBlink selectBlink={this.selectBlink} setAudioObj={this.setAudioObj}/>
+        <MenuBlink selectBlink={this.selectBlink} setAudioObj={this.setAudioObj} selectTransition={this.selectTransition}/>
 
         <div style={{
             display: this.state.blink === 1
@@ -114,7 +120,7 @@ class Menu extends Component {
               : 'none'
           }}>
           <h3>Speed</h3>
-          <MenuSpeed selectSpeed={this.selectSpeed} selectTransition={this.selectTransition}/>
+          <MenuSpeed selectSpeed={this.selectSpeed}/>
           <h3>Color</h3>
           <MenuColor setColors={this.setColors}/>
         </div>

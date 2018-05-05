@@ -5,8 +5,7 @@ class MenuSpeed extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      speed: 1,
-      transition: false
+      speed: 1
     }
   }
   render() {
@@ -31,12 +30,6 @@ class MenuSpeed extends Component {
           this.state.speed === 10
           ? 'selected'
           : '')} onClick={() => this.setState({speed: 10}, this.props.selectSpeed(10))}>x10</button>
-      <button className={"btn default " + (
-          this.state.transition === true
-          ? 'selected'
-          : '')} onClick={() => this.setState({
-          transition: !this.state.transition
-        }, this.props.selectTransition(!this.state.transition))}>Transition</button>
     </div>);
   }
 }
