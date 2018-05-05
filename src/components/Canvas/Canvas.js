@@ -10,8 +10,6 @@ class Canvas extends Component {
       transitionPeriod: '0'
     }
 
-    this.max = -1;
-
     this.setParams = this.setParams.bind(this);
     this.setupParams = this.setupParams.bind(this);
     this.play = this.play.bind(this);
@@ -89,6 +87,8 @@ class Canvas extends Component {
   }
   blinkBySoundRange() {
     let params = this.state.params;
+    this.max = -1;
+    this.min = 999;
     clearInterval(this.loop);
     this.loop = setInterval(() => {
       let audioBuffer = this.state.params.audio.getBuffer();
@@ -97,6 +97,8 @@ class Canvas extends Component {
       });
       if (sum > this.max)
         this.max = sum;
+      if (sum < this.min)
+        this.min = sum;
       console.log(audioBuffer);
       console.log(sum, this.max);
       let color = this.value2HexColor(sum / this.max);
