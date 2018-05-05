@@ -17,7 +17,7 @@ class MenuSound extends Component {
           this.setState({
             soundSense: 1
           }, this.props.selectSoundSense(1))
-        }}>Range</button>
+        }}>Mood</button>
       <button className={"btn default " + (
           this.state.soundSense === 2
           ? 'selected'

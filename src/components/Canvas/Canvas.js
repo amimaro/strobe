@@ -21,7 +21,7 @@ class Canvas extends Component {
     this.setupSpeed = this.setupSpeed.bind(this);
     this.getColor = this.getColor.bind(this);
     this.getRandomColor = this.getRandomColor.bind(this);
-    this.blinkBySoundRange = this.blinkBySoundRange.bind(this);
+    this.blinkBySoundMood = this.blinkBySoundMood.bind(this);
     this.blinkBySoundBeats = this.blinkBySoundBeats.bind(this);
   }
   setParams(params) {
@@ -79,7 +79,7 @@ class Canvas extends Component {
     let params = this.state.params;
     switch (params.soundSense) {
       case 1:
-        this.blinkBySoundRange();
+        this.blinkBySoundMood();
         break;
       case 2:
         this.blinkBySoundBeats();
@@ -87,7 +87,7 @@ class Canvas extends Component {
       default:
     }
   }
-  blinkBySoundRange() {
+  blinkBySoundMood() {
     let params = this.state.params;
     this.max = -1;
     this.min = 9999;
