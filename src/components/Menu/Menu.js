@@ -14,7 +14,7 @@ class Menu extends Component {
     this.state = {
       displayMenu: false,
       speed: 1,
-      transition: false,
+      transition: true,
       blink: 1,
       control: 2,
       colors: [],
