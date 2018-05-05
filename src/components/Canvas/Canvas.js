@@ -12,6 +12,10 @@ class Canvas extends Component {
       transitionPeriod: '0'
     }
 
+    this.movingAvgOld = 0;
+    this.movingAvg = 0;
+    this.window = 5;
+
     this.setParams = this.setParams.bind(this);
     this.setupParams = this.setupParams.bind(this);
     this.play = this.play.bind(this);
@@ -89,19 +93,19 @@ class Canvas extends Component {
   }
   blinkBySoundMood() {
     let params = this.state.params;
-    this.max = -1;
-    this.min = 9999;
+    let max = -1;
+    let min = 9999;
     clearInterval(this.loop);
     this.loop = setInterval(() => {
       let audioBuffer = this.state.params.audio.getBuffer();
       let sum = audioBuffer.reduce((p, c) => {
         return p + c
       });
-      if (sum > this.max)
-        this.max = sum;
-      if (sum < this.min)
-        this.min = sum;
-      let hue = parseInt((sum * 360 - this.min) / this.max);
+      if (sum > max)
+        max = sum;
+      if (sum < min)
+        min = sum;
+      let hue = parseInt((this.movingAverage(sum) * 360 - min) / max);
       let rbg = convert.hsl.rgb(hue, 100, 50);
       let color = '#' + convert.rgb.hex(rbg);
       this.setColor(color);
@@ -122,6 +126,11 @@ class Canvas extends Component {
       let color = this.value2HexColor(sum / this.max);
       this.setColor(color);
     }, this.setupSpeed(params.speed));
+  }
+  movingAverage(value) {
+    this.movingAvg = this.movingAvgOld + (value - this.movingAvgOld) / this.window;
+    this.movingAvgOld = this.movingAvg;
+    return this.movingAvg;
   }
   setupSpeed(speed) {
     let params = this.state.params;
