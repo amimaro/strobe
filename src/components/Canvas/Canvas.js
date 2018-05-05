@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './Canvas.css';
 
+import convert from 'color-convert';
+
 class Canvas extends Component {
   constructor(props) {
     super(props);
@@ -88,7 +90,7 @@ class Canvas extends Component {
   blinkBySoundRange() {
     let params = this.state.params;
     this.max = -1;
-    this.min = 999;
+    this.min = 9999;
     clearInterval(this.loop);
     this.loop = setInterval(() => {
       let audioBuffer = this.state.params.audio.getBuffer();
@@ -99,9 +101,9 @@ class Canvas extends Component {
         this.max = sum;
       if (sum < this.min)
         this.min = sum;
-      console.log(audioBuffer);
-      console.log(sum, this.max);
-      let color = this.value2HexColor(sum / this.max);
+      let hue = parseInt((sum * 360 - this.min) / this.max);
+      let rbg = convert.hsl.rgb(hue, 100, 50);
+      let color = '#' + convert.rgb.hex(rbg);
       this.setColor(color);
     }, this.setupSpeed(params.speed));
   }
