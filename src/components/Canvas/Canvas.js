@@ -15,6 +15,8 @@ class Canvas extends Component {
     this.movingAvgOld = 0;
     this.movingAvg = 0;
     this.window = 5;
+    this.max = -1;
+    this.min = 9999;
 
     this.setParams = this.setParams.bind(this);
     this.setupParams = this.setupParams.bind(this);
@@ -93,26 +95,6 @@ class Canvas extends Component {
   }
   blinkBySoundMood() {
     let params = this.state.params;
-    let max = -1;
-    let min = 9999;
-    clearInterval(this.loop);
-    this.loop = setInterval(() => {
-      let audioBuffer = this.state.params.audio.getBuffer();
-      let sum = audioBuffer.reduce((p, c) => {
-        return p + c
-      });
-      if (sum > max)
-        max = sum;
-      if (sum < min)
-        min = sum;
-      let hue = parseInt((this.movingAverage(sum) * 360 - min) / max);
-      let rbg = convert.hsl.rgb(hue, 100, 50);
-      let color = '#' + convert.rgb.hex(rbg);
-      this.setColor(color);
-    }, this.setupSpeed(params.speed));
-  }
-  blinkBySoundBeats() {
-    let params = this.state.params;
     clearInterval(this.loop);
     this.loop = setInterval(() => {
       let audioBuffer = this.state.params.audio.getBuffer();
@@ -121,11 +103,45 @@ class Canvas extends Component {
       });
       if (sum > this.max)
         this.max = sum;
-      console.log(audioBuffer);
-      console.log(sum, this.max);
-      let color = this.value2HexColor(sum / this.max);
+      if (sum < this.min)
+        this.min = sum;
+      let hue = parseInt((this.movingAverage(sum) * 360 - this.min) / this.max);
+      let rbg = convert.hsl.rgb(hue, 100, 50);
+      let color = '#' + convert.rgb.hex(rbg);
       this.setColor(color);
     }, this.setupSpeed(params.speed));
+  }
+  blinkBySoundBeats() {
+    let params = this.state.params;
+    let isBeat = false;
+    let lastAudioBuffer = this.state.params.audio.getBuffer();
+    clearInterval(this.loop);
+    this.loop = setInterval(() => {
+      let audioBuffer = this.state.params.audio.getBuffer();
+      let sum = 0;
+      let beatSum = 0;
+      for (let [index, value] of audioBuffer.entries()) {
+        sum += value;
+        if (value > (lastAudioBuffer[index] + lastAudioBuffer[index] * 0.1)) {
+          beatSum++;
+        }
+      }
+      if (sum > this.max)
+        this.max = sum;
+      if (sum < this.min)
+        this.min = sum;
+      let hue = parseInt((sum * 360 - this.min) / this.max);
+      let rbg = convert.hsl.rgb(hue, 100, 50);
+      let color = '#' + convert.rgb.hex(rbg);
+
+      if(beatSum > 10) {
+        this.setColor(color);
+      } else {
+        this.setColor('#000000');
+      }
+
+      lastAudioBuffer = audioBuffer;
+    }, 100);
   }
   movingAverage(value) {
     this.movingAvg = this.movingAvgOld + (value - this.movingAvgOld) / this.window;
