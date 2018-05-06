@@ -134,10 +134,15 @@ class Canvas extends Component {
       let rbg = convert.hsl.rgb(hue, 100, 50);
       let color = '#' + convert.rgb.hex(rbg);
 
-      if(beatSum > 10) {
+      if (beatSum > 10 && isBeat === false) {
+        isBeat = true;
         this.setColor(color);
+        clearTimeout(this.turnOff);
       } else {
-        this.setColor('#000000');
+        this.turnOff = setTimeout(() => {
+          isBeat = false;
+          this.setColor('#000000');
+        }, 300);
       }
 
       lastAudioBuffer = audioBuffer;
