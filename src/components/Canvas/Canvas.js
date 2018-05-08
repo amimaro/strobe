@@ -122,7 +122,7 @@ class Canvas extends Component {
       let beatSum = 0;
       for (let [index, value] of audioBuffer.entries()) {
         sum += value;
-        if (value > (lastAudioBuffer[index] + lastAudioBuffer[index] * 0.3)) {
+        if ((value > (lastAudioBuffer[index] + lastAudioBuffer[index] * 0.3)) || (value > 80)) {
           beatSum++;
         }
       }
@@ -134,7 +134,7 @@ class Canvas extends Component {
       let rbg = convert.hsl.rgb(hue, 100, 50);
       let color = '#' + convert.rgb.hex(rbg);
 
-      if (beatSum > 5 && isBeat === false) {
+      if (beatSum > 10 && isBeat === false) {
         isBeat = true;
         this.setColor(color);
         clearTimeout(this.turnOff);
@@ -142,7 +142,7 @@ class Canvas extends Component {
         this.turnOff = setTimeout(() => {
           isBeat = false;
           this.setColor('#000000');
-        }, 300);
+        }, 200);
       }
 
       lastAudioBuffer = audioBuffer;
