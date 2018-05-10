@@ -1,8 +1,8 @@
 <h1 align="center">strobe</h1>
-<p align="center">
-  <img alt="logo" width="200" src="assets/logo.png">
-</p>
 
+<p align="center">
+<img src="https://media.giphy.com/media/9r1jOCUr55oswRD8sR/giphy.gif" />
+</p>
 
 > The Poor Man's Strobe
 
