@@ -12,7 +12,7 @@ class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayMenu: false,
+      displayMenu: true,
       speed: 1,
       transition: true,
       blink: 1,

@@ -12,7 +12,7 @@ class App extends Component {
     this.setParams = this.setParams.bind(this);
   }
   componentDidMount() {
-    alert('click anywhere to display the menu');
+    alert('click anywhere on the background to display/hide the menu');
   }
   setParams(params) {
     console.log('app setParams')
